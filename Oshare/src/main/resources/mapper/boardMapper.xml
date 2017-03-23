@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardMapper">
+
+	<!-- 전체 제품 레코드 출력 -->
+	<resultMap type="boardDTO" id="board">
+		<id column="board_no" property="boardNo"/>
+		<result column="product_name" property="productName"/>
+		<result column="product_price_per_day" property="price"/>
+	</resultMap>
+
+	<resultMap type="boardDTO" id="boardMap">
+		<id column="BOARD_NO" property="boardNo" />
+		<result column="MEMBER_ID" property="memberId" />
+		<result column="PRODUCT_NAME" property="productName" />
+		<result column="PRODUCT_CATEGORY" property="category" />
+		<result column="BOARD_TYPE" property="boardType" />
+		<result column="PRODUCT_PRICE_PER_DAY" property="price" />
+		<result column="PRODUCT_CONDITION" property="condition" />
+		<result column="DEALING_TYPE" property="dealingType" />
+		<result column="PRODUCT_DETAIL" property="detail" />
+		<result column="REG_DATE" property="regDate" />
+		<result column="THUMBNAIL" property="filePath" />
+		<result column="VIEWCOUNT" property="viewCount" />
+	</resultMap>
+
+	<resultMap type="boardDTO" id="boardMemberJoinMap">
+		<id column="BOARD_NO" property="boardNo" />
+		<result column="MEMBER_ID" property="memberId" />
+		<result column="PRODUCT_NAME" property="productName" />
+		<result column="PRODUCT_CATEGORY" property="category" />
+		<result column="BOARD_TYPE" property="boardType" />
+		<result column="PRODUCT_PRICE_PER_DAY" property="price" />
+		<result column="PRODUCT_CONDITION" property="condition" />
+		<result column="DEALING_TYPE" property="dealingType" />
+		<result column="PRODUCT_DETAIL" property="detail" />
+		<result column="REG_DATE" property="regDate" />
+		<result column="THUMBNAIL" property="filePath" />
+		<result column="VIEWCOUNT" property="viewCount" />
+		<association javaType="memberDTO" property="memberDTO">
+			<id column="MEMBER_ID" property="memberId" />
+			<result column="MEMBER_NO" property="memberNo" />
+			<result column="MEMBER_PWD" property="memberPwd" />
+			<result column="MEMBER_NAME" property="memberName" />
+			<result column="MEMBER_BIRTH" property="memberBirth" />
+			<result column="MEMBER_ADDR" property="memberAddr" />
+			<result column="MEMBER_BANK" property="memberBank" />
+			<result column="MEMBER_ACCOUNT" property="memberAccount" />
+			<result column="MEMBER_VALID_MONTH" property="memberValidMonth" />
+			<result column="MEMBER_VALID_YEAR" property="memberValidYear" />
+			<result column="MEMBER_SHARING_COUNT" property="memberSharingCount" />
+			<result column="MEMBER_PHONE" property="memberPhone" />
+			<result column="member_profile_path" property="memberProfilePath"/>
+		</association>
+	</resultMap>
+	
+	<resultMap type="boardDTO" id="boardMemberDoubleJoinMap">
+		<id column="BOARD_NO" property="boardNo" />
+		<result column="MEMBER_ID" property="memberId" />
+		<result column="PRODUCT_NAME" property="productName" />
+		<result column="PRODUCT_CATEGORY" property="category" />
+		<result column="BOARD_TYPE" property="boardType" />
+		<result column="PRODUCT_PRICE_PER_DAY" property="price" />
+		<result column="PRODUCT_CONDITION" property="condition" />
+		<result column="DEALING_TYPE" property="dealingType" />
+		<result column="PRODUCT_DETAIL" property="detail" />
+		<result column="REG_DATE" property="regDate" />
+		<result column="THUMBNAIL" property="filePath" />
+		<result column="VIEWCOUNT" property="viewCount" />
+		<association javaType="memberDTO" property="memberDTO">
+			<id column="MEMBER_ID" property="memberId" />
+			<result column="MEMBER_NO" property="memberNo" />
+			<result column="MEMBER_PWD" property="memberPwd" />
+			<result column="MEMBER_NAME" property="memberName" />
+			<result column="MEMBER_BIRTH" property="memberBirth" />
+			<result column="MEMBER_ADDR" property="memberAddr" />
+			<result column="MEMBER_BANK" property="memberBank" />
+			<result column="MEMBER_ACCOUNT" property="memberAccount" />
+			<result column="MEMBER_VALID_MONTH" property="memberValidMonth" />
+			<result column="MEMBER_VALID_YEAR" property="memberValidYear" />
+			<result column="MEMBER_SHARING_COUNT" property="memberSharingCount" />
+			<result column="MEMBER_PHONE" property="memberPhone" />
+		</association>
+		<association javaType="reviewDTO" property="reviewDTO">
+			<id column="REVIEW_NO" property="reviewNo"/>
+			<result column="BOARD_NO" property="boardNo"/>
+			<result column="MEMBER_ID" property="memberId"/>
+			<result column="PRODUCT_REVIEW_CONTENTS" property="contents"/>
+			<result column="REG_DATE" property="regDate"/>
+		</association>
+	</resultMap>
+	
+	<resultMap id="boardGradeMap" type="gradeDTO">
+			<id property="gradeNo" column="GRADE_NO"/>	
+			<result property="memberId" column="MEMBER_ID"/>	
+			<result property="memberReview" column="MEMBER_REVIEW"/>	
+			<result property="regDate" column="REG_DATE"/>	
+			<result property="memberPoint" column="MEMBER_POINT"/>
+			<result property="boardNo" column="BOARD_NO"/>
+	</resultMap>
+
+	<!-- 전체 제품 레코드 출력 -->
+	<!-- <select id="selectAllList" resultMap="">
+
+	</select> -->
+
+	<!-- sharing, rental 제품 등록 -->
+	<insert id="insertBoard" parameterType="boardDTO">
+		INSERT INTO
+		BOARD(BOARD_NO,MEMBER_ID,PRODUCT_NAME,PRODUCT_CATEGORY,BOARD_TYPE,PRODUCT_PRICE_PER_DAY,PRODUCT_CONDITION,PRODUCT_DETAIL,REG_DATE,THUMBNAIL,VIEWCOUNT)
+		VALUES(SEQ_BOARD_NO.NEXTVAL,#{memberId},#{productName},#{category},#{boardType},#{price},#{condition},#{detail},SYSDATE,#{filePath},0)
+	</insert>
+
+	<!-- 등록한 글의 시퀀스 값 반환 -->
+	<select id="selectBoardSeqNo" resultType="int">
+		SELECT
+		SEQ_BOARD_NO.CURRVAL FROM DUAL
+	</select>
+
+	<!-- boardNo로 게시글 정보 불러오기 -->
+	<select id="selectByBoardNo" parameterType="int" resultMap="boardMemberJoinMap">
+		SELECT
+		B.BOARD_NO,B.PRODUCT_NAME,B.PRODUCT_CATEGORY,B.BOARD_TYPE,B.PRODUCT_PRICE_PER_DAY,B.PRODUCT_CONDITION,
+		B.PRODUCT_DETAIL,B.REG_DATE,B.THUMBNAIL,B.VIEWCOUNT,M.MEMBER_ID,M.MEMBER_NAME , M.member_profile_path
+		FROM BOARD B JOIN MEMBER M
+		ON B.BOARD_NO=#{value} AND
+		B.MEMBER_ID=M.MEMBER_ID
+	</select>
+
+	<!-- 조회수 증가 -->
+	<update id="updateViewCount" parameterType="int">
+		UPDATE BOARD
+		SET VIEWCOUNT = VIEWCOUNT+1
+		WHERE BOARD_NO=#{value}
+	</update>
+	
+	<!-- 메인 페이지 조회수 상위 8개 목록 가져오기-->
+	<select id="selectTopList" parameterType="string" resultMap="boardMap">
+		<![CDATA[ 
+			SELECT B.* 
+			FROM (SELECT BOARD_NO,PRODUCT_NAME,PRODUCT_PRICE_PER_DAY,THUMBNAIL,RANK() OVER (ORDER BY VIEWCOUNT DESC) FROM BOARD WHERE BOARD_TYPE=#{value} ) B
+			WHERE ROWNUM<=8
+		]]> 
+	</select>
+
+	
+	<!-- PAGING : 전체 페이지 레코드 조회(sharing, rental 게시판) -->
+	<select id="selectList" resultMap="boardMap" parameterType="map">
+		SELECT BOARD_NO,PRODUCT_NAME,PRODUCT_PRICE_PER_DAY,THUMBNAIL FROM BOARD
+		WHERE BOARD_TYPE = #{boardType}
+		<if test="productCategory!=	null">
+			AND PRODUCT_CATEGORY = #{productCategory} 
+		</if>
+		 ORDER BY BOARD_NO DESC
+	</select>
+	
+	<!-- PAGING : 전체 페이지 레코드 조회(sharing, rental 게시판) -->
+	<select id="selectRentalList" resultMap="boardMap" parameterType="map">
+		SELECT BOARD_NO,PRODUCT_NAME,PRODUCT_PRICE_PER_DAY,THUMBNAIL FROM BOARD
+		WHERE BOARD_TYPE = #{boardType}
+		<if test="productCategory!=	null">
+			AND PRODUCT_CATEGORY = #{productCategory} 
+		</if>
+		ORDER BY BOARD_NO DESC
+	</select>
+	
+	<!-- PAGING : 전체 게시글 수 조회 -->
+	<select id="selectCount" resultType="int" parameterType="map">
+		SELECT COUNT(*) FROM BOARD WHERE BOARD_TYPE = #{boardType}
+		<if test="productCategory!=	null">
+		AND PRODUCT_CATEGORY = #{productCategory} 
+		</if>
+		 ORDER BY BOARD_NO DESC
+	</select>
+	
+	<!-- selectBoardDetail -->
+	<select id="boardDetail" parameterType="int" resultMap="board">
+		select product_name, product_price_per_day from board where board_no=#{value}
+	</select>
+	
+<!-- select : 상품후기 -->
+
+
+<select id="boardDetailSaleReview" parameterType="int" resultMap="boardGradeMap"> select GRADE_NO , member_id , MEMBER_REVIEW , reg_date , MEMBER_POINT ,board_no from MEMBER_GRADE where board_no = #{value} </select>
+
+<!-- select : 판매자가 판매중인 제품 -->
+
+
+<select id="boardDetailSaleList" parameterType="String" resultMap="boardMap"> select board_no ,product_name , THUMBNAIL from board where member_id = #{value} </select>
+
+
+<!-- select : 평점 -->
+<select id="boardDetailSaleGrade" parameterType="String" resultType="gradeDTO"> SELECT TRUNC(AVG(MEMBER_POINT),1) as memberPoint FROM MEMBER_GRADE WHERE SELLER_ID = #{value}</select>
+
+<!-- cart insert -->
+	<resultMap type="CartDTO" id="cartMapp">
+		<id column="CART_NO" property="cartNo"/>
+		<result column="BOARD_NO" property="boardNo"/>
+		<result column="MEMBER_ID" property="memberId"/>
+		<result column="CART_START" property="cartStart"/>
+		<result column="CART_END" property="cartEnd"/>
+		<result column="CART_PRICE" property="cartPrice"/>
+	</resultMap>
+
+
+<!-- cart insert -->
+	<insert id="cartInsert" parameterType="CartDTO">
+		insert into Cart values(SEQ_CART_NO.NEXTVAL , #{boardNo}, #{memberId}, #{cartStart}, #{cartEnd}, #{cartPrice})
+	</insert>
+	
+	<!-- 게시물검색 -->
+	<select id="searchBoard" parameterType="String" resultMap="boardMap">
+		select BOARD_NO, MEMBER_ID, PRODUCT_NAME, PRODUCT_CATEGORY, BOARD_TYPE, PRODUCT_PRICE_PER_DAY, PRODUCT_CONDITION, DEALING_TYPE, PRODUCT_DETAIL, REG_DATE, THUMBNAIL, VIEWCOUNT 
+		from board where product_name like '%${value}%'
+	</select>
+
+
+	<!-- PAGING : 검색 게시글 수 조회 -->
+	<select id="selectSearchCount" resultType="int" parameterType="map">
+		select COUNT(*) from board where product_name like '%${keyWord}%'
+	</select>
+	
+	<!-- 상품삭제  -->
+	<delete id="boardDelete" parameterType="int">
+		delete from board where board_no = #{value}
+	</delete>
+	
+	<!-- 상품수정 -->
+	<update id="boardUpdate" parameterType="boardDTO">
+		update board set product_name= #{productName} , product_price_per_day = #{price} , PRODUCT_CONDITION = #{condition} , product_detail = #{detail} where board_no = #{boardNo}  and member_id = #{memberId}
+	</update>
+		
+	
+</mapper>

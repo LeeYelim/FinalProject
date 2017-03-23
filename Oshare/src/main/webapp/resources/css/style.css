@@ -1,0 +1,2917 @@
+/* @font-face{
+	font-family: myPageTilteFont;
+	src : url(/controller/resources/fonts/andarascript-demo.ttf);
+} */
+
+* {
+	padding: 0;
+	margin: 0 auto;
+	list-style: none;
+	font-family: "맑은고딕"; 
+	outline: none;
+}
+
+html,body {
+	height: 100%
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:focus {
+	text-decoration: none;
+	color: inherit;
+}
+
+.dialogBlack {
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.7;
+	z-index: 1000;
+	position: fixed;
+	opacity: 0;
+	display: none;
+}
+
+/* layout */
+#main {
+	width: 100%;
+	min-height:100%;
+	float: left;
+	position: relative;
+}
+
+
+
+#mypageContentTiles {
+	width: 80%;
+	float: left;
+	margin-bottom: 30px;
+}
+
+/* footer */
+footer {
+	width: 100%;
+	float: left;
+	text-align: center;
+	position:relative;
+	background: #232323;
+	padding-top:100px;
+	padding-bottom:100px;
+}
+footer .footerIconForm{width:100%; float:left; position: relative;}
+footer .footerIconForm h1{color:#fff; padding-bottom: 15px; padding-top:15px;} 
+footer .footerIconForm p{color:#FFF176; margin-top:35px; font-size:16px;}
+footer .footerScrollTopUp{ position:fixed; right: 0;  bottom: 0; margin:30px;  cursor: pointer; display:none;}
+footer .footerScrollTopUp i{font-size:48px;  border-radius:5px;  padding:10px; color:#fff; background:#434345; transition:0.8s; }
+footer .footerScrollTopUp i:hover{border-radius:100%;  background:#66BB6A;}
+
+/* content */
+#contentTiles {
+	width: 100%;
+	float: left;
+	margin-bottom: 100px;
+}
+
+/* Header nav Class */
+.headerNavactionAdvice {
+    position:fixed;
+    top:0;
+    z-index: 998;
+}
+
+/* heartWish */
+.heartWish {
+	border-radius: 100%;
+	color: #000;
+	cursor: pointer;
+	transition: 0.4s;
+}
+
+/* goodsDetailViewSee*/
+.goodsDetailViewSee {
+	background: #fff;
+	padding: 10px;
+	border-radius: 100%;
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 5;
+	opacity: 0;
+	transition: 0.4s;
+}
+/* bootstrap */
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9{padding-left:0;}
+
+.carousel-indicators li{border:1px solid #000; opacity:0.5;}
+.carousel-indicators .active{background-color:#000;}
+
+/* bootstrap dataTable */
+table tbody .odd .dataTables_empty{padding-top:15px; padding-bottom:15px;}
+table tbody tr td{text-align: center;}
+
+#saleProductTable tbody .odd .dataTables_empty{padding-top:15px; padding-bottom:15px;}
+
+table.dataTable.no-footer{border-bottom: none;}
+
+/* .ui-widget-header{background: #2196f3; border:none;color:#fff; }
+
+.ui-widget-header select{color:#000;}
+
+#rentalItemTable_filter input[type=search]{border:none; color:#000; border:1px solid #e8e8e8; transition:0.4s;} */
+
+/* header */
+.headerNavactionUser {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	float: left;
+	position: relative;
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+	z-index: 3;
+}
+
+.headerNavactionUser ul {
+	float: right;
+	text-align: center;
+}
+
+.headerNavactionUser ul li {
+	float: left;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+.headerNavactionUser>ul>li:nth-child(2) {
+	padding-left: 0;
+}
+
+.headerNavactionUser>ul>li:nth-last-child(1) {
+	padding-right: 45px;
+}
+
+.headerNavaction {
+	width:100%;
+	height: 85px;
+	line-height: 65px;
+	float: left;
+	background: #fff;
+	position: relative;
+	
+}
+
+.headerNavaction ul {
+	float: right
+}
+
+.headerNavaction>ul li {
+	float: left;
+	padding: 10px 0px;
+	transition: 0.4s;
+}
+
+.headerNavaction>ul>li>a{padding:0 25px; transition: 0.4s;}
+
+.headerNavaction>ul>li>a:hover{background: #e8e8e8; padding:30px 25px; padding-bottom:35px;}
+
+
+.headerNavaction .headerIconNavaction {
+	height:85px;
+	float: left;
+}
+
+.headerNavaction .headerIconNavaction li {
+	line-height:100px;
+	padding: 0 10px;
+	cursor: pointer;
+}
+
+.headerNavaction .headerIconNavaction>li span{transition:0.4s;}
+
+.headerNavaction .headerIconNavaction>li span:hover {
+	background: #e8e8e8;
+	padding:30px 0;
+}
+
+.headerNavaction .headerIconNavaction li:nth-last-child(1) {
+	margin-right: 16px;
+}
+
+.headerNavaction .headerIcon {
+	float: left;
+}
+
+.headerNavaction ul li .myPageList {
+	width:140px;
+	flaot: left;
+	padding:10px 0;
+	text-align:center;
+	position: relative;
+}
+
+.headerNavaction ul li .myPageList>ul {
+	width:140px;
+	position: absolute;
+	top:130%;
+	text-align: center;
+	background: #fff;
+	opacity:0;
+	display:none;	
+	z-index:999;
+}
+
+.headerNavaction ul li .myPageList ul>li {
+	padding:0;
+	float: none;
+	cursor: pointer;
+	height:65px;
+	line-height:65px;
+	overflow:hidden;
+	transition: 0.4s;
+	position: relative;
+	border-top:1px dotted #e8e8e8;
+}
+
+.headerNavaction ul li .myPageList ul>li::before{
+	content:"";
+	width:5px;
+	height: 100%;
+	float:left;
+	background:#2196F3;
+	position: absolute;
+	top:-100%;
+	left:0;
+	transition: 0.4s;	
+}
+
+.headerNavaction ul li .myPageList>ul>li:hover::before  {
+	top:0;
+}
+
+.HeaderSearchForm {
+	width: 97.5%;
+	height: 100%;
+	float: left;
+	background: #fff;
+	position: absolute;
+	z-index: 100;
+	z-index: 2;
+	opacity: 0;
+	display: none;
+}
+
+.HeaderSearchForm form {
+	width: 90%;
+	height: 100%;
+	float: left;
+}
+
+.HeaderSearchForm form input {
+	width: 100%;
+	height: 100%;
+	float: left;
+	border: none;
+}
+
+.HeaderSearchForm .HeaderSearchClose {
+	width: 10%;
+	height: 100%;
+	float: left;
+	position: relative;
+}
+
+.HeaderSearchForm .HeaderSearchClose span {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	cursor: pointer;
+}
+
+/* header mobile */
+.mobileHeaderNavaction {
+	width: 100%;
+	float: left;
+	position: relative;
+	display: none;
+}
+
+.mobileHeaderNavaction>ul {
+	width: 100%;
+	float: left;
+}
+
+.mobileHeaderNavaction>ul>li {
+	width: 33.3%;
+	float: left;
+}
+
+.mobileHeaderNavaction .mobileHeaderNavactionLogo {
+	width: 100%;
+	float: left;
+	text-align: center;
+	margin-top: 15px;
+}
+
+.mobileHeaderNavaction .mobileHeaderNavactionIcon ul {
+	float: right;
+	margin-top: 15px;
+}
+
+.mobileHeaderNavaction .mobileHeaderNavactionIcon ul li {
+	float: left;
+	margin-right: 5px;
+	tr
+}
+
+.mobileHeaderNavaction .mobileHeaderNavactionBtn {
+	position: relative;
+	width: 27px;
+	height: 27px;
+	float: left;
+	margin: 15px;
+	margin-left: 0;
+	cursor: pointer;
+}
+
+.mobileHeaderNavaction .mobileHeaderNavactionBtn, .mobileHeaderNavaction .mobileHeaderNavactionBtn span
+	{
+	display: inline-block;
+	transition: all .4s;
+	box-sizing: border-box;
+}
+
+.mobileHeaderNavaction .mobileHeaderNavactionBtn span {
+	position: absolute;
+	left: 0px;
+	width: 100%;
+	height: 3px;
+	background-color: #000;
+	/* border-radius: 0px; */
+}
+
+.mobileHeaderNavaction .mobileHeaderNavactionBtn span:nth-of-type(1) {
+	top: 0;
+}
+
+.mobileHeaderNavaction .mobileHeaderNavactionBtn span:nth-of-type(2) {
+	top: 7px;
+}
+
+.mobileHeaderNavaction .mobileHeaderNavactionBtn span:nth-of-type(3) {
+	bottom: 9px;
+}
+
+.mobileHeaderNavaction .mobileHeaderNavactionBtn.active-9 {
+	-webkit-transform: rotate(360deg);
+	transform: rotate(360deg);
+}
+
+.mobileHeaderNavaction .mobileHeaderNavactionBtn.active-9 span:nth-of-type(1),
+	.mobileHeaderNavaction .mobileHeaderNavactionBtn.active-9 span:nth-of-type(3)
+	{
+	width: 14px;
+}
+
+.mobileHeaderNavaction .mobileHeaderNavactionBtn.active-9 span:nth-of-type(1)
+	{
+	-webkit-transform: translate(-1px, 13px) rotate(-45deg);
+	transform: translate(0px, 3px) rotate(-31deg);
+}
+
+.mobileHeaderNavaction .mobileHeaderNavactionBtn.active-9 span:nth-of-type(3)
+	{
+	-webkit-transform: translate(-1px, -13px) rotate(45deg);
+	transform: translate(0px, -4px) rotate(31deg);
+}
+
+.mobileHeaderNavactionMenuActive {
+	background: #42b294;
+	color: #fff;
+}
+
+.mobileHeaderNavactionMenu {
+	width: 85%;
+	height: 1000px;
+	float: left;
+	position: absolute;
+	z-index: 16;
+	top: 66px;
+	left: -100%;
+	background: #fff;
+}
+
+.mobileHeaderNavactionMenu ul {
+	width: 100%;
+	float: left;
+}
+
+.mobileHeaderNavactionMenu ul li {
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	float: left;
+	padding-left: 10px;
+	transition: 0.4s;
+}
+
+.mobileHeaderNavactionMenu ul li:hover {
+	background: #42b294;
+	color: #fff;
+}
+
+.mobileHeaderNavactionMenu ul li:nth-child(1) {
+	line-height: 1px;
+	padding-left: 0;
+}
+
+.mobileHeaderNavactionMenu ul li:nth-child(1):hover {
+	background: #fff;
+	color: #000;
+}
+
+.mobileHeaderNavactionMenu .mobileHeaderNavactionMenuSearch {
+	width: 95%;
+	float: left;
+	border: 1px solid #e8e8e8;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.mobileHeaderNavactionMenu .mobileHeaderNavactionMenuSearch input[type=text]
+	{
+	width: 90%;
+	float: left;
+	padding-left: 15px;
+	padding-top: 3px;
+	border: none;
+}
+
+.mobileHeaderNavactionMenu .mobileHeaderNavactionMenuSearch input[type=submit]
+	{
+	border: none;
+	background: inherit;
+}
+
+/* index */
+#indexSharigForm {
+	width: 100%;
+	height: 50%;
+	float: left;
+	background: #fff;
+	position: relative;
+}
+
+#indexSharigForm .indexSharingList {
+	width: 100%;
+	height: 100%;
+	float: left;
+}
+
+#indexSharigForm .indexSharingTitle {
+	width: 100%;
+	float: left;
+	text-align: center;
+	position: relative;
+}
+
+#indexSharigForm .indexSharingTitle>span {
+	font-size: 33px;
+	line-height: 100px;
+	font-weight: bold;
+}
+
+#indexSharigForm .indexSharingTitle .indexSharingBtn {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translate(0, -50%);
+}
+
+#indexSharigForm .indexSharingTitle .indexSharingBtn span {
+	color: #fff;
+	background: #2196F3;
+	border: 1px solid #1E88E5;
+	border-radius: 5px;
+	padding: 5px;
+	cursor: pointer;
+	transition: 0.4s;
+}
+
+#indexSharigForm .indexSharingTitle .indexSharingBtn span:hover {
+	background: #1976D2;
+	color: #fff;
+}
+
+#indexSharigForm .indexSharingList .item {
+	width: 100%;;
+	float: left;
+	border: 1px solid #e8e8e8;
+}
+
+#indexSharigForm .indexSharingList .item ul {
+	text-align: center;
+}
+
+#indexSharigForm .indexSharingList .item ul li {
+	margin-top: 10px;
+	position: relative;
+}
+
+#indexSharigForm .indexSharingList .item ul li:nth-child(1) {
+	margin-top: 0;
+}
+
+#indexSharigForm .indexSharingList .item ul li img {
+	width: 100%;
+	height: 150px;
+}
+
+#indexSharigForm .indexSharingList .item ul li:nth-child(1)::before {
+	content: "";
+	width: 100%;
+	height: 100%;
+	float: left;
+	background: #000;
+	position: absolute;
+	left: 0;
+	z-index: 4;
+	opacity: 0;
+	transition: 0.4s;
+}
+
+#indexSharigForm .indexSharingList .item:hover ul li::before {
+	opacity: 0.7;
+}
+
+#indexSharigForm .indexSharingList .item:hover .goodsDetailViewSee {
+	top: 50%;
+	opacity: 1;
+	transition: 0.4s;
+}
+
+#indexRentalForm {
+	width: 100%;
+	height: 50%;
+	float: left;
+	background: #fff;
+	position: relative;
+}
+
+#indexRentalForm .indexRentalList {
+	width: 100%;
+	height: 100%;
+	float: left;
+}
+
+#indexRentalForm .indexRentalTitle {
+	width: 100%;
+	float: left;
+	text-align: center;
+	position: relative
+}
+
+#indexRentalForm .indexRentalTitle>span {
+	font-size: 33px;
+	line-height: 100px;
+	font-weight: bold;
+}
+
+#indexRentalForm .indexRentalTitle .indexRentalBtn {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translate(0, -50%);
+}
+
+#indexRentalForm .indexRentalTitle .indexRentalBtn span {
+	color: #fff;
+	background: #2196F3;
+	border: 1px solid #1E88E5;
+	border-radius: 5px;
+	padding: 5px;
+	cursor: pointer;
+	transition: 0.4s;
+}
+
+#indexRentalForm .indexRentalTitle .indexRentalBtn span:hover {
+	background: #1976D2;
+	color: #fff;
+}
+
+#indexRentalForm .indexRentalList .item {
+	width: 100%;;
+	float: left;
+	border: 1px solid #e8e8e8;
+}
+
+#indexRentalForm .indexRentalList .item ul {
+	text-align: center;
+}
+
+#indexRentalForm .indexRentalList .item ul li {
+	margin-top: 10px;
+	position: relative;
+}
+
+#indexRentalForm .indexRentalList .item ul li:nth-child(1) {
+	margin-top: 0;
+}
+
+#indexRentalForm .indexRentalList .item ul li span {
+	border-radius: 100%;
+	padding: 10px;
+	color: #000;
+	cursor: pointer;
+	transition: 0.4s;
+}
+
+#indexRentalForm .indexRentalList .item ul li img {
+	width: 100%;
+	height: 150px;
+}
+
+#indexRentalForm .indexRentalList .item ul li:nth-child(1)::before {
+	content: "";
+	width: 100%;
+	height: 100%;
+	float: left;
+	background: #000;
+	position: absolute;
+	left: 0;
+	z-index: 4;
+	opacity: 0;
+	transition: 0.4s;
+}
+
+#indexRentalForm .indexRentalList .item:hover ul li::before {
+	opacity: 0.7;
+}
+
+#indexRentalForm .indexRentalList .item:hover .goodsDetailViewSee {
+	top: 50%;
+	opacity: 1;
+	transition: 0.4s;
+}
+
+/* goodsList */
+
+
+.goodsListDetailSearch {
+	width: 100%;
+	height: 100%;;
+	float: left;
+	position: relative;
+	font-weight: bold;
+	color: #fff;
+	background: #2196F3;
+	border-top-right-radius: 15px;
+	border: 1px solid #2196F3;
+	border-radius: 5px;
+	padding: 5px;
+	cursor: pointer;
+}
+
+.goodsListDetailSearch span {
+	width: 10%;
+	height: 100%;
+	float: left;
+	margin-right: 15px;
+}
+
+.goodsListDetailSearch input {
+	width: 86%;
+	height: 100%;
+	float: left;
+	border: none;
+	outline: none;
+}
+
+.goodsListCategory {
+	width: 100%;
+	height: 600px;
+	float: left;
+	margin-top: 25px;
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+}
+
+.goodsListCategory ul li {
+	margin-top: 14px;
+	text-align: center;
+}
+
+.goodsListCategory ul li:nth-child(1) {
+	margin-top: 0;
+	padding-bottom: 15px;
+	padding-top: 15px;
+	border-bottom: 1px solid #e8e8e8;
+	font-size: 20px;
+	font-weight: bold;
+	color: #fff;
+	background: #2196F3;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	border: 1px solid #2196F3;
+}
+
+#goodsListItemForm {
+	width: 100%; float; left;
+	position: relative;
+}
+
+#goodsListItemForm .goodsListItem {
+	width: 30%;
+	height:278px;
+	float: left;
+	margin: 25px 10px;
+	border: 1px solid #e8e8e8;
+	transition: 0.4s;
+}
+
+#goodsListItemForm .goodsListItem:nth-child(3n+0) {
+	margin-right: 0;
+}
+
+#goodsListItemForm .goodsListItem ul {
+	text-align: center;
+}
+
+#goodsListItemForm .goodsListItem ul li {
+	margin-top: 10px;
+	transition: 0.4s;
+}
+
+#goodsListItemForm .goodsListItem ul li:nth-child(1) {
+	margin-top: 0;
+	position: relative;
+}
+
+#goodsListItemForm .goodsListItem ul li img {
+	width: 100%;
+	height: 150px;
+	
+}
+
+#goodsListItemForm .goodsListItem ul li:nth-child(1)::before {
+	content: "";
+	width: 100%;
+	height: 100%;
+	float: left;
+	background: #000;
+	position: absolute;
+	z-index: 4;
+	opacity: 0;
+	transition: 0.4s;
+}
+
+#goodsListItemForm .goodsListItem:hover ul li::before {
+	opacity: 0.7;
+}
+
+#goodsListItemForm .goodsListItem:hover .goodsDetailViewSee {
+	top: 50%;
+	opacity: 1;
+	transition: 0.4s;
+}
+
+#goodsListItemForm .goodsListInsertBtn {
+	width: 100%;
+	float: left;
+}
+
+#goodsListItemForm .goodsListInsertBtn span {
+	float: right;
+	margin-right: 5px;
+	width: 110px;
+	height: 40px;
+	background: #3b3b3b;
+	border-color: #282828;
+	text-align: center;
+	line-height: 40px;
+	color: #fff;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#goodsListItemForm .goodsListNavaction {
+	width: 100%;
+	float: left;
+	text-align: center;
+}
+
+#goodsListItemForm .BoardNoPosts{width:100%; float:left; text-align: center;}
+#goodsListItemForm .BoardNoPosts a{width:100%; float:left; text-align:center; border:1px solid #e8e8e8; border-radius:15px; padding:15px; margin-top:30px; margin-bottom: 30px; transition:0.4s;}
+#goodsListItemForm .BoardNoPosts a:hover{border-color:#2196f3}
+/* goodsList mobile */
+.mobileGoodsListForm {
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	float: left;
+	background: #3b3b3b;
+	color: #fff;
+	text-align: center;
+	display: none;
+}
+
+.mobileGoodsListForm .mobileGoodsListCategory {
+	position: relative;
+}
+
+.mobileGoodsListForm .mobileGoodsListCategory ul {
+	width: 95%;
+	float: left;
+}
+
+.mobileGoodsListForm .mobileGoodsListCategory .goodsListPrev {
+	color: #fff;
+	position: absolute;
+	left: 17px;
+	line-height: 52px;
+	z-index: 2;
+	cursor: pointer;
+}
+
+.mobileGoodsListForm .mobileGoodsListCategory .goodsListNext {
+	color: #fff;
+	position: absolute;
+	right: 70px;;
+	line-height: 52px;
+	z-index: 2;
+	cursor: pointer;
+}
+
+.mobileGoodsListForm .mobileGoodsListCategory ul li {
+	width: 100%;
+	float: left;
+}
+
+.mobileGoodsListForm .mobileDetailSearch span {
+	line-height: 52px;
+	cursor: pointer;
+}
+
+/* goodsDetail */
+.goodsAdd {
+	position: absolute;
+	right: 0;
+	z-index: 1;
+}
+
+.goodsAdd span {
+	margin-left: 15px;
+}
+
+.goodsAdd span:nth-child(1) {
+	color: #fff;
+	background: #3b3b3b;
+	padding: 5px;
+	border-color: #282828;
+	border-radius: 100%;
+}
+
+.goodsImg {
+	width: 100%;
+	float: left;
+	position: relative;
+}
+
+.goodsImg img {
+	width: 100%;
+}
+
+.goodsImg ul {
+	width: 100%;
+	float: left;
+}
+
+.goodsImg ul li {
+	width: 20%;
+	float: left;
+}
+
+.sellerInformation {
+	width: 100%;
+	float: left;
+	position: relative;
+	border: 1px solid #e8e8e8;
+	margin-top: 15px;
+}
+
+.sellerInformation ul li {
+	width: 100%;
+	float: left;
+	margin-top: 15px;
+	padding: 5px;
+}
+
+.sellerInformation ul li:nth-child(1) {
+	margin-top: 0;
+}
+
+.sellerInformation ul li:nth-last-child(1) {
+	padding: 0;
+}
+
+.sellerInformation ul li .rentalPointForm {
+	margin-top:5px;
+	float: left;
+}
+
+.sellerInformation ul li .starGrade {
+	float: left;
+}
+
+.sellerInformation ul li .declaration {
+	float: right;
+	cursor: pointer;
+}
+
+.sellerInformation .sellerSub {
+	width: 100%;
+	float: left;
+}
+
+.sellerInformation .sellerSub span {
+	width: 50%;
+	height: 50px;
+	line-height: 50px;
+	float: left;
+	text-align: center;
+	border-top: 1px solid #e8e8e8;
+	cursor: pointer;
+}
+
+.sellerInformation .sellerSub span:nth-child(1) {
+	border-right: 1px solid #e8e8e8;
+}
+
+.goodsDetailChage {
+	width: 100%;
+	float:left;
+}
+
+.goodsDetailChage span {
+	width: 49%;
+	height: 50px;
+	line-height: 50px;
+	float: left;
+	text-align: center;
+	border: 1px solid #e8e8e8;
+	margin-right: 6px;
+	margin-top: 15px;
+	cursor: pointer;
+}
+
+.goodsDetailChage span:nth-last-child(1) {
+	margin-right: 0;
+}
+
+.goodsDetailIcon {
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 3;
+}
+
+.goodsDetailIcon span {
+	cursor: pointer;
+	color: #fff;
+	background: #2196F3;
+	border: 1px solid #1E88E5;
+	border-radius: 100%;
+	padding: 5px;
+	margin-right: 5px;
+}
+
+.goodsDetailInformation {
+	width: 100%;
+	float: left;
+	position: relative;
+}
+
+.goodsDetailInformation ul li {
+	width: 100%;
+	float: left;
+	padding: 10px;
+	padding-left: 0;
+}
+
+.goodsPayment {
+	width: 100%;
+	position: relative;
+}
+
+.goodsPayment button {
+	width: 49%;;
+	height: 50px;
+	border: none;
+	border: 1px solid #e8e8e8;
+	background: #fff;
+}
+
+.goodsDetailNavaction {
+	margin-top: 74px;
+}
+
+#goodsInformation{width:100%; float:left;}
+#goodsInformation img{width:100%;}
+
+#goodsReview .goodsReviewPaing {
+	width: 100%;
+	float: left;
+	text-align: center;
+}
+
+#goodsReview .goodsReviewPlus {
+	width: 100%;
+	float: left;
+}
+
+#goodsReview .goodsReviewPlus span {
+	margin-top:15px;
+	float:left;
+	cursor: pointer;
+}
+
+#goodsReview .goodsReviewForm {
+	width: 100%;
+	float: left;
+	position: relative;
+}
+
+#goodsReview .goodsReviewForm .goodsReviewTitle {
+	width: 100%;
+	height: 40px;
+	float: left;
+	background: #2196F3;
+	border-radius: 5px;
+	cursor: pointer;
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#goodsReview .goodsReviewForm .goodsReviewTitle span {
+	width:100%;
+	float:left;
+	font-weight: bold;
+	line-height: 40px;
+	margin-left: 15px;
+	color: #fff;
+}
+
+#goodsReview .goodsReviewForm .goodsReviewTitle ul{width:100%; float:left; padding-right: 40px;}
+#goodsReview .goodsReviewForm .goodsReviewTitle ul li{float:right;}
+#goodsReview .goodsReviewForm .goodsReviewTitle ul li:nth-child(1){float:left;}
+#goodsReview .goodsReviewForm .goodsReviewTitle ul li:nth-child(3){padding-right: 15px;}
+#goodsReview .goodsReviewForm .goodsReviewContent {
+	width: 95%;
+	float: left;
+	display: none;
+	background-color: #fff;
+	border: 1px solid #e8e8e8;
+	margin-left: 3%;
+	border-radius: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#goodsReview .goodsReviewForm .goodsReviewContent>span{padding: 15px;}
+
+#goodsReview .goodsReviewForm .goodsReviewContent span {
+	width:100%;
+	float: left;
+}
+
+
+#goodsReview .goodsReviewForm .goodsReviewContent .goodsReviewAdd
+	{
+	float: right;
+	cursor: pointer;
+}
+
+#goodsReview .goodsReviewForm .goodsChattingForm{width:100%; float:left;}
+#goodsReview .goodsReviewForm .goodsChattingForm span{width:100%; float:left; padding:0; padding-bottom: 15px;}
+#goodsReview .goodsReviewForm .goodsChattingForm form textarea{width:84%;float:left}
+#goodsReview .goodsReviewForm .goodsChattingForm form input[type=button]{width:15%; height:40px; float:left;}
+#goodsReview .goodsReviewForm .goodsChattingForm p{width:100%; float:left;}
+
+#goodsReview .goodsReviewPlusForm {
+	width: 100%;
+	float: left;
+	padding:15px;
+	border: 1px solid #e8e8e8;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormTitle {
+	width: 100%;
+	float: left;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormTitle span {
+	width: 10%;
+	float: left;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormTitle input
+	{
+	width: 90%;
+	float: left;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormContent {
+	width: 100%;
+	float: left;
+	margin-top: 15px;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormContent span
+	{
+	width: 10%;
+	height: 70px;
+	line-height: 70px;
+	float: left;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormContent textarea
+	{
+	width: 90%;
+	height: 70px;
+	float: left;
+}
+#goodsReview .goodsReviewPlusForm input[value=전송]{margin-top:15px; float:right;}#goodsReview .goodsReviewPaing {
+	width: 100%;
+	float: left;
+	text-align: center;
+}
+
+#goodsReview .goodsReviewPlus {
+	width: 100%;
+	float: left;
+}
+
+#goodsReview .goodsReviewPlus span {
+	margin-top:15px;
+	float:left;
+	cursor: pointer;
+}
+
+#goodsReview .goodsReviewForm {
+	width: 100%;
+	float: left;
+	position: relative;
+}
+
+#goodsReview .goodsReviewForm .goodsReviewTitle {
+	width: 100%;
+	height: 40px;
+	float: left;
+	background: #2196F3;
+	border-radius: 5px;
+	cursor: pointer;
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#goodsReview .goodsReviewForm .goodsReviewTitle span {
+	width:100%;
+	float:left;
+	font-weight: bold;
+	line-height: 40px;
+	margin-left: 15px;
+	color: #fff;
+}
+
+#goodsReview .goodsReviewForm .goodsReviewTitle ul{width:100%; float:left; padding-right: 40px;}
+#goodsReview .goodsReviewForm .goodsReviewTitle ul li{float:right;}
+#goodsReview .goodsReviewForm .goodsReviewTitle ul li:nth-child(1){float:left;}
+#goodsReview .goodsReviewForm .goodsReviewTitle ul li:nth-child(3){padding-right: 15px;}
+#goodsReview .goodsReviewForm .goodsReviewContent {
+	width: 95%;
+	float: left;
+	display: none;
+	background-color: #fff;
+	border: 1px solid #e8e8e8;
+	margin-left: 3%;
+	border-radius: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#goodsReview .goodsReviewForm .goodsReviewContent>span{padding: 15px;}
+
+#goodsReview .goodsReviewForm .goodsReviewContent span {
+	width:100%;
+	float: left;
+}
+
+
+#goodsReview .goodsReviewForm .goodsReviewContent .goodsReviewAdd
+	{
+	float: right;
+	cursor: pointer;
+}
+
+#goodsReview .goodsReviewForm .goodsChattingForm{width:100%; float:left;}
+#goodsReview .goodsReviewForm .goodsChattingForm span{width:100%; float:left; padding:0; padding-bottom: 15px;}
+#goodsReview .goodsReviewForm .goodsChattingForm form textarea{width:84%;float:left}
+#goodsReview .goodsReviewForm .goodsChattingForm form input[type=button]{width:15%; height:40px; float:left;}
+#goodsReview .goodsReviewForm .goodsChattingForm p{width:100%; float:left;}
+
+#goodsReview .goodsReviewPlusForm {
+	width: 100%;
+	float: left;
+	padding:15px;
+	border: 1px solid #e8e8e8;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormTitle {
+	width: 100%;
+	float: left;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormTitle span {
+	width: 10%;
+	float: left;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormTitle input
+	{
+	width: 90%;
+	float: left;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormContent {
+	width: 100%;
+	float: left;
+	margin-top: 15px;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormContent span
+	{
+	width: 10%;
+	height: 70px;
+	line-height: 70px;
+	float: left;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormContent textarea
+	{
+	width: 90%;
+	height: 70px;
+	float: left;
+}
+#goodsReview .goodsReviewPlusForm input[value=전송]{margin-top:15px; float:right;}#goodsReview .goodsReviewPaing {
+	width: 100%;
+	float: left;
+	text-align: center;
+}
+
+#goodsReview .goodsReviewPlus {
+	width: 100%;
+	float: left;
+}
+
+#goodsReview .goodsReviewPlus span {
+	margin-top:15px;
+	float:left;
+	cursor: pointer;
+}
+
+#goodsReview .goodsReviewForm {
+	width: 100%;
+	float: left;
+	position: relative;
+}
+
+#goodsReview .goodsReviewForm .goodsReviewTitle {
+	width: 100%;
+	height: 40px;
+	float: left;
+	background: #2196F3;
+	border-radius: 5px;
+	cursor: pointer;
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#goodsReview .goodsReviewForm .goodsReviewTitle span {
+	width:100%;
+	float:left;
+	font-weight: bold;
+	line-height: 40px;
+	margin-left: 15px;
+	color: #fff;
+}
+
+#goodsReview .goodsReviewForm .goodsReviewTitle ul{width:100%; float:left; padding-right: 40px;}
+#goodsReview .goodsReviewForm .goodsReviewTitle ul li{float:right;}
+#goodsReview .goodsReviewForm .goodsReviewTitle ul li:nth-child(1){float:left;}
+#goodsReview .goodsReviewForm .goodsReviewTitle ul li:nth-child(3){padding-right: 15px;}
+#goodsReview .goodsReviewForm .goodsReviewContent {
+	width: 95%;
+	float: left;
+	display: none;
+	background-color: #fff;
+	border: 1px solid #e8e8e8;
+	margin-left: 3%;
+	border-radius: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#goodsReview .goodsReviewForm .goodsReviewContent>span{padding: 15px;}
+
+#goodsReview .goodsReviewForm .goodsReviewContent span {
+	width:100%;
+	float: left;
+}
+
+#goodsReview .goodsReviewForm .goodsReviewContent .goodsProductReviewsForm .goodsProductReviews span{border-top:1px solid #000; border-bottom:1px solid #000; margin-bottom: 15px;}
+#goodsReview .goodsReviewForm .goodsReviewContent .goodsProductReviewsForm .goodsProductReviews span ul{width:100%; float:left; margin-top:10px;}
+#goodsReview .goodsReviewForm .goodsReviewContent .goodsProductReviewsForm .goodsProductReviews span ul li{float:left}
+#goodsReview .goodsReviewForm .goodsReviewContent .goodsProductReviewsForm .goodsProductReviews span ul li:nth-child(2){float:right}
+
+#goodsReview .goodsReviewForm .goodsReviewContent .goodsReviewAdd
+	{
+	float: right;
+	cursor: pointer;
+	margin-bottom:15px;
+}	
+
+#goodsReview .goodsReviewForm .goodsReviewChattingForm{width:100%; float:left; margin-to}
+#goodsReview .goodsReviewForm .goodsReviewChattingForm span{width:100%; float:left; padding:0; padding-bottom: 15px;}
+#goodsReview .goodsReviewForm .goodsReviewChattingForm form textarea{width:84%;float:left}
+#goodsReview .goodsReviewForm .goodsReviewChattingForm form input[type=button]{width:15%; height:40px; float:left;}
+#goodsReview .goodsReviewForm .goodsReviewChattingForm p{width:100%; float:left;}
+
+#goodsReview .goodsReviewPlusForm {
+	width: 100%;
+	float: left;
+	padding:15px;
+	border: 1px solid #e8e8e8;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormTitle {
+	width: 100%;
+	float: left;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormTitle span {
+	width: 10%;
+	float: left;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormTitle input
+	{
+	width: 90%;
+	float: left;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormContent {
+	width: 100%;
+	float: left;
+	margin-top: 15px;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormContent span
+	{
+	width: 10%;
+	height: 70px;
+	line-height: 70px;
+	float: left;
+}
+
+#goodsReview .goodsReviewPlusForm .goodsReviewPlusFormContent textarea
+	{
+	width: 90%;
+	height: 70px;
+	float: left;
+}
+#goodsReview .goodsReviewPlusForm input[value=전송]{margin-top:15px; float:right;}
+
+#goodsQuestion .goodsQuestionPaing {
+	width: 100%;
+	float: left;
+	text-align: center;
+}
+
+#goodsQuestion .goodsQuestionPlus {
+	width: 100%;
+	float: left;
+}
+
+#goodsQuestion .goodsQuestionPlus span {
+	margin-top:15px;
+	float:left;
+	cursor: pointer;
+}
+
+#goodsQuestion .goodsQuestionForm {
+	width: 100%;
+	float: left;
+	position: relative;
+}
+
+#goodsQuestion .goodsQuestionForm .goodsQuestionTitle {
+	width: 100%;
+	height: 40px;
+	float: left;
+	background: #2196F3;
+	border-radius: 5px;
+	cursor: pointer;
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#goodsQuestion .goodsQuestionForm .goodsQuestionTitle span {
+	width:100%;
+	float:left;
+	font-weight: bold;
+	line-height: 40px;
+	margin-left: 15px;
+	color: #fff;
+}
+
+#goodsQuestion .goodsQuestionForm .goodsQuestionTitle ul{width:100%; float:left; padding-right: 40px;}
+#goodsQuestion .goodsQuestionForm .goodsQuestionTitle ul li{float:right;}
+#goodsQuestion .goodsQuestionForm .goodsQuestionTitle ul li:nth-child(1){float:left;}
+#goodsQuestion .goodsQuestionForm .goodsQuestionTitle ul li:nth-child(3){padding-right: 15px;}
+#goodsQuestion .goodsQuestionForm .goodsQuestionContent {
+	width: 95%;
+	float: left;
+	display: none;
+	background-color: #fff;
+	border: 1px solid #e8e8e8;
+	margin-left: 3%;
+	border-radius: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#goodsQuestion .goodsQuestionForm .goodsQuestionContent>span{padding: 15px;}
+
+#goodsQuestion .goodsQuestionForm .goodsQuestionContent span {
+	width:100%;
+	float: left;
+}
+
+#goodsQuestion .goodsQuestionForm .goodsQuestionContent .goodsQuestionCommentsForm .goodsQuestionComments span{border-top:1px solid #000; border-bottom:1px solid #000; margin-bottom: 15px;}
+#goodsQuestion .goodsQuestionForm .goodsQuestionContent .goodsQuestionCommentsForm .goodsQuestionComments span ul{width:100%; float:left; margin-top:10px;}
+#goodsQuestion .goodsQuestionForm .goodsQuestionContent .goodsQuestionCommentsForm .goodsQuestionComments span ul li{float:left}
+#goodsQuestion .goodsQuestionForm .goodsQuestionContent .goodsQuestionCommentsForm .goodsQuestionComments span ul li:nth-child(2){float:right}
+
+
+#goodsQuestion .goodsQuestionForm .goodsQuestionContent .goodsQuestionAdd{
+	float: right;
+	cursor: pointer;
+	margin-bottom: 15px;
+}
+
+#goodsQuestion .goodsQuestionForm .goodsChattingForm{width:100%; float:left; margin-top:15px;}
+#goodsQuestion .goodsQuestionForm .goodsChattingForm span{width:100%; float:left; padding:0; padding-bottom: 15px;}
+#goodsQuestion .goodsQuestionForm .goodsChattingForm form textarea{width:84%;float:left}
+#goodsQuestion .goodsQuestionForm .goodsChattingForm form input[type=button]{width:15%; height:40px; float:left;}
+#goodsQuestion .goodsQuestionForm .goodsChattingForm p{width:100%; float:left;}
+
+#goodsQuestion .goodsQuestionPlusForm {
+	width: 100%;
+	float: left;
+	padding:15px;
+	border: 1px solid #e8e8e8;
+}
+
+#goodsQuestion .goodsQuestionPlusForm .goodsQuestionPlusFormTitle {
+	width: 100%;
+	float: left;
+}
+
+#goodsQuestion .goodsQuestionPlusForm .goodsQuestionPlusFormTitle span {
+	width: 10%;
+	float: left;
+}
+
+#goodsQuestion .goodsQuestionPlusForm .goodsQuestionPlusFormTitle input
+	{
+	width: 90%;
+	float: left;
+}
+
+#goodsQuestion .goodsQuestionPlusForm .goodsQuestionPlusFormContent {
+	width: 100%;
+	float: left;
+	margin-top: 15px;
+}
+
+#goodsQuestion .goodsQuestionPlusForm .goodsQuestionPlusFormContent span
+	{
+	width: 10%;
+	height: 70px;
+	line-height: 70px;
+	float: left;
+}
+
+#goodsQuestion .goodsQuestionPlusForm .goodsQuestionPlusFormContent textarea
+	{
+	width: 90%;
+	height: 70px;
+	float: left;
+}
+#goodsQuestion .goodsQuestionPlusForm input[value=전송]{margin-top:15px; float:right;}
+
+.saleProfile {
+	width: 900px;
+	float: left;
+	position: absolute;
+	top:0;
+	left: 60%;
+	transform: translate(-50%, 0);
+	background: #fff;
+	z-index: 1001;
+	opacity: 0;
+	display: none;
+}
+
+.saleProfile .saleProfileTitle {
+	width: 100%;
+	height: 50px;
+	float: left;
+	background: #2196F3;
+}
+
+.saleProfile .saleProfileTitle span {
+	color: #fff;
+	float: left;
+	margin: 15px;
+}
+
+.saleProfile .saleProfileTitle .saleProfileClose {
+	float: right;
+	cursor: pointer;
+	margin: 10px;
+}
+
+.saleProfile .saleProfileImg {
+	width: 100%;
+	float: left;
+	text-align: center;
+	margin-top: 15px;
+}
+
+.saleProfile .saleProfileImg img {
+	border: 1px solid #000;
+	border-radius: 50%;
+}
+
+.saleProfile .saleProfileImformation {
+	width: 100%;
+	float: left;
+	text-align: center;
+	margin-top: 15px;
+	padding-bottom: 15px;
+	border-bottom: 2px solid #e8e8e8;
+}
+
+.saleProfile .saleReview {
+	width: 100%;
+	float: left;
+	padding-top: 15px;
+}
+
+.saleProfile .saleReview>span {
+	padding: 15px;
+	float: left;
+}
+
+.saleProfile .saleProduct {
+	width: 100%;
+	float: left;
+}
+
+.saleProfile .saleProduct>span {
+	padding: 15px;
+	float: left;
+}
+
+.saleProfile .saleProduct table tr td,th{padding:0; text-align: center;}
+
+.saleProfile .saleProduct table tr td img {
+	width: 100%;
+	float: left;
+}
+.saleMessage {
+	width: 500px;
+	height: 400px;
+	position: absolute;
+	top: 30%;
+	left: 60%;
+	transform: translate(-50%, -50%);
+	background: #fff;
+	z-index: 1001;
+	opacity: 0;
+	display: none;
+}
+
+.saleMessage .saleMessageTitle {
+	width: 100%;
+	height: 50px;
+	float: left;
+	background: #2196F3;
+}
+
+.saleMessage .saleMessageTitle span {
+	color: #fff;
+	float: left;
+	margin: 15px;
+}
+
+.saleMessage .saleMessageTitle .saleMessageClose {
+	float: right;
+	cursor: pointer;
+	margin: 10px;
+}
+
+.saleMessage .saleMessageRecipient {
+	width: 100%;
+	float: left;
+	padding: 15px;
+}
+
+.saleMessage .saleMessageRecipient input {
+	width: 200px;
+}
+
+.saleMessage .saleMessageRecipient span:nth-child(1) {
+	width: 15%;
+	float: left;
+}
+
+.saleMessage .saleMessageContent {
+	width: 100%;
+	float: left;
+	padding: 15px;
+}
+
+.saleMessage .saleMessageContent textarea {
+	width: 85%;
+	height: 200px;
+	float: left;
+}
+
+.saleMessage .saleMessageContent span:nth-child(1) {
+	width: 15%;
+	float: left;
+}
+
+.saleMessage .saleMessageBtn input {
+	width:150px;
+	height:40px;
+	border-radius:5px;
+	float: right;
+	margin: 15px;
+	background:#2196F3;
+	color:#fff;
+	border:none;
+}
+
+.declarationDialog {
+	width: 500px;
+	height: 400px;
+	position: absolute;
+	top: 30%;
+	left: 60%;
+	transform: translate(-50%, -50%);
+	background: #fff;
+	z-index: 1001;
+	opacity: 0;
+	display: none;
+}
+
+.declarationDialog .declarationTitle {
+	width: 100%;
+	height: 50px;
+	float: left;
+	background: #2196F3;
+}
+
+.declarationDialog .declarationTitle span {
+	color: #fff;
+	float: left;
+	margin: 15px;
+}
+
+.declarationDialog .declarationTitle .declarationClose {
+	float: right;
+	cursor: pointer;
+	margin: 10px;
+}
+
+.declarationDialog .declarationList {
+	width: 100%;
+	float: left;
+	padding: 15px;
+}
+
+.declarationDialog .declarationList span {
+	width: 20%;
+	float: left;
+	text-align: center;
+}
+
+.declarationDialog .reasonForReport {
+	width: 100%;
+	float: left;
+	padding: 15px;
+}
+
+.declarationDialog .reasonForReport span {
+	width: 20%;
+	line-height: 150px;
+	float: left;
+	text-align: center;
+}
+
+.declarationDialog .reasonForReport textarea {
+	width: 70%;
+	height: 150px;
+}
+
+.declarationDialog .declarationBtn {
+	width: 100%;
+	float: left;
+	text-align: center;
+	margin-top:30px;
+}
+
+.declarationDialog .declarationBtn input{
+	width:50%;
+	height:40px;
+	border:none;
+	background:#2196F3;
+	color:#fff;
+}
+
+/* loginForm */
+#login {
+	width: 100%;
+	height: 100%;
+	float: left;
+	position: relative;
+	text-align: center;
+}
+
+#login .loginForm {
+	width: 600px;
+	height: 400px;
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+	margin-top:30px;
+}
+
+#login .loginForm .loginTitle{width:100%; height:60px; float:left; background:#2196F3; color:#fff;}
+#login .loginForm .loginTitle{line-height:60px; color:#fff; font-size:24px; font-weight: bold; }
+
+#login .loginForm form {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#login .loginForm form ul{width:100%;}
+
+#login .loginForm form ul li {
+	width:100%;
+	float:left;
+	margin-top: 10px;
+}
+
+#login .loginForm form ul li span {
+	width: 60px;
+	line-height:50px;
+	float: left;
+}
+
+#login .loginForm form ul li input{
+	width:80%;
+	height:50px;
+	float:left;
+	border-radius:5px;
+	border:none;
+	border:1px solid #e8e8e8;
+	padding:15px;
+	margin-left:5px;
+	transition:0.4s;
+}
+
+#login .loginForm form ul li input:focus{
+	border-color:#2196F3; 
+}
+
+#login .loginForm form ul li input[type=submit] {
+	width: 100%;
+	height: 50px;
+	border: none;
+	padding:0;
+	margin-top:15px;
+	margin-bottom:15px;
+	background:#2196F3; color:#fff;
+}
+
+#login .loginForm .loginSub {
+	position: absolute;
+	bottom: 32px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#login .loginForm .loginSub a {
+	margin-right: 15px;
+}
+
+/* mobile loginForm */
+#mobileLogin {
+	width: 100%;
+	float: left;
+	position: relative;
+	display: none;
+}
+
+#mobileLogin .mobileLoginForm{
+	text-align: center;
+}
+
+#mobileLogin .mobileLoginForm form input {
+	width: 90%;
+	height: 40px;
+	float: left;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 10px;
+}
+
+#mobileLogin .mobileLoginForm .mobileLoginSub {
+	width: 90%;
+	float: left;
+	text-align: center;
+	border-top: 1px solid #999;
+	margin-top: 15px;
+	margin-left: 15px;
+	padding-top: 15px;
+}
+
+/* myPageMenu */
+.mypageMenu {
+	width: 120px;
+	float: left;
+	margin-top: 50px;
+}
+
+.mypageMenu ul {
+	text-align: center;
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+}
+
+.mypageMenu ul li {
+	height: 40px;
+	line-height: 40px;
+}
+
+.mypageMenu ul li:nth-child(1) {
+	color: #fff;
+	background: #2196F3;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+}
+
+.mypageMenu ul li:nth-child(5) {
+	border-top: 2px dotted #e9e9e9;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.mobileMypageMenu {
+	width: 100%;
+	float: left;
+	text-align: center;
+	position: relative;
+	display: none;
+}
+
+.mobileMypageMenu .mypagePrev {
+	color: #000;
+	position: absolute;
+	left: 17px;
+	line-height: 27px;
+	z-index: 2;
+	cursor: pointer;
+}
+
+.mobileMypageMenu .mypageNext {
+	color: #000;
+	position: absolute;
+	right: 10px;
+	line-height: 27px;
+	z-index: 2;
+	cursor: pointer;
+}
+
+.mobileMypageMenu ul {
+	width: 100%;
+	float: left;
+}
+
+.mobileMypageMenu ul li {
+	width: 33%;
+	height: 30px;
+	line-height: 30px;
+	float: left;
+	border: 1px solid #e8e8e8;
+}
+
+/* wishList */
+.wishListForm {
+	width: 100%;
+	float: left;
+	margin-left: 20px;
+	margin-top: 45px;
+}
+
+.wishListForm .wishListTitle{width:100%; height:300px; float:left; background-image:url("/controller/resources/image/myPageTitleImg.jpeg");  background-position:top center ;position: relative;}
+.wishListForm .wishListTitle::before{content:""; width:100%; height: 100%; float:left; background: #000; opacity:0.7; position: absolute; top:0; left:0; }
+
+.wishListForm .wishListTitle span {
+	font-size:60px;
+	font-weight:bold;
+	color:#fff;
+	position: absolute;
+	top:50%;
+	left:50%; 
+	transform:translate(-50%,-50%);
+}
+.wishListForm table tr td{padding:0; position:relative;}
+.wishListForm table tr td h3{text-align: center;}
+.wishListForm table tr td span{position:absolute; top:0; right:0; padding:15px;}
+.wishListForm table tr td img{width:100%; float:left;}
+
+/* salesItemList */
+.saleItemListForm {
+	width: 100%;
+	float: left;
+	margin-left: 20px;
+	margin-top: 45px;
+}
+
+.saleItemListForm .saleItemListTitle{width:100%; height:300px; float:left; background-image:url("/controller/resources/image/myPageTitleImg.jpeg");  background-position:top center ;position: relative;}
+.saleItemListForm .saleItemListTitle::before{content:""; width:100%; height: 100%; float:left; background: #000; opacity:0.7; position: absolute; top:0; left:0; }
+
+.saleItemListForm .saleItemListTitle span{
+	font-size:60px;
+	font-weight:bold;
+	color:#fff;
+	position: absolute;
+	top:50%;
+	left:50%; 
+	transform:translate(-50%,-50%);
+}
+
+.saleItemListForm table tr td,th{text-align: center;}
+.saleItemListForm table tr td{padding:0;}
+.saleItemListForm table tr td img {
+	width: 100%;
+	float: left;
+}
+
+.saleItemListForm table tr td .saleItemListTransactionStatus {
+	width: 100%;
+	height: 100%;
+	float: left;
+}
+
+.saleItemListForm table tr td .saleItemListTransactionStatus span {
+	width: 100%;
+	line-height: 76px;
+	float: left;
+	margin: 0;
+}
+
+.saleItemListForm table tr td .saleItemListTransactionStatus input[type=button]
+	{
+	width: 100%;
+	height: 66px;
+	line-height: 66px;
+	background:#2196F3;
+	color:#fff;
+	border:none;
+	float: left;
+}
+
+.saleItemListDialog {
+	width: 600px;
+	height: 630px;
+	float: left;
+	position: absolute;
+	top: 63%;
+	left: 60%;
+	transform: translate(-50%, -50%);
+	background: #fff;
+	border: 1px solid #e8e8e8;
+	z-index: 1001;
+	opacity: 0;
+	display: none;
+}
+
+.saleItemListDialog .saleItemListDialogTitle {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	float: left;
+	color: #fff;
+	background: #2196F3;
+}
+
+.saleItemListDialog .saleItemListDialogTitle span:nth-child(1) {
+	padding-left: 10px;
+}
+
+.saleItemListDialog .saleItemListDialogTitle .saleItemListClose {
+	padding: 7px;
+	color: #fff;
+	float: right;
+	cursor: pointer;
+}
+
+.saleItemListDialog .rentalFee {
+	width: 100%;
+	float: left;
+	border-bottom: 2px solid #e8e8e8;
+}
+
+.saleItemListDialog .rentalFee>span {
+	width: 100%;
+	float: left;
+	padding: 15px;
+}
+
+.saleItemListDialog .rentalFee ul {
+	padding: 5px;
+	margin-left: 50px;
+}
+
+.saleItemListDialog .rentalFee ul li {
+	margin-top: 5px;
+}
+
+.saleItemListDialog .annualFee {
+	width: 100%;
+	float: left;
+	border-bottom: 2px solid #e8e8e8;
+}
+
+.saleItemListDialog .annualFee>span {
+	width: 100%;
+	float: left;
+	padding: 15px;
+}
+
+.saleItemListDialog .annualFee ul {
+	padding: 5px;
+	margin-left: 50px;
+}
+
+.saleItemListDialog .annualFee ul li {
+	margin-top: 5px;
+}
+
+.saleItemListDialog .saleItemAddMoney {
+	width: 100%;
+	float: left;
+	border-bottom: 2px solid #e8e8e8;
+}
+
+.saleItemListDialog .saleItemAddMoney>span {
+	width: 100%;
+	float: left;
+	padding: 15px;
+}
+
+.saleItemListDialog .saleItemAddMoney ul {
+	padding: 5px;
+	margin-left: 50px;
+}
+
+.saleItemListDialog .saleItemAddMoney ul li {
+	margin-top: 5px;
+	width: 100%;
+	float: left;
+}
+
+.saleItemListDialog .saleItemAddMoney ul li span {
+	width: 15%;
+	float: left;
+}
+
+.saleItemListDialog .saleItemAddMoney ul li textarea {
+	width: 50%;
+	float: left;
+}
+
+.saleItemListDialog .saleItemAddMoney ul li input[type=number] {
+	width: 50%;
+	float: left;
+}
+
+.saleItemListDialog .totalAmount {
+	width: 100%;
+	float: left;
+	border-bottom: 2px solid #e8e8e8;
+}
+
+.saleItemListDialog .totalAmount ul {
+	padding: 5px;
+	margin-left: 50px;
+}
+
+.saleItemListDialog .totalAmount ul li {
+	margin-top: 5px;
+}
+
+.saleItemListDialog .totalCharges {
+	width: 100%;
+	float: left;
+	border-bottom: 2px solid #e8e8e8;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	text-align: center;
+}
+
+.saleItemListDialog .saleItemBtn {
+	width: 100%;
+	float: left;
+	text-align: center;
+	margin-top: 15px;
+}
+.saleItemListDialog .saleItemBtn input[type=button]{
+	width:150px;
+	height: 40px;
+	background: #2196f3;
+	color:#fff;
+	border:none;
+}
+
+.saleItemListDialog .saleItemBtn input[type=submit]{
+	width:150px;
+	height: 40px;
+	background: #2196f3;
+	color:#fff;
+	border:none;
+}
+
+/* rentalItemList */
+.rentalItemListForm {
+	width: 100%;
+	float: left;
+	margin-left: 20px;
+	margin-top: 45px;
+}
+.rentalItemListForm .rentalItemListTitle{width:100%; height:300px; float:left; background-image:url("/controller/resources/image/myPageTitleImg.jpeg");  background-position:top center ;position: relative;}
+.rentalItemListForm .rentalItemListTitle::before{content:""; width:100%; height: 100%; float:left; background: #000; opacity:0.7; position: absolute; top:0; left:0; }
+
+.rentalItemListForm .rentalItemListTitle span{
+	font-size:60px;
+	font-weight:bold;
+	color:#fff;
+	position: absolute;
+	top:50%;
+	left:50%; 
+	transform:translate(-50%,-50%);
+}
+
+.rentalItemListForm table tr td,th{text-align: center;}
+.rentalItemListForm table tr td{padding:0;}
+
+.rentalItemListForm table tr td input {
+	width: 100%;
+	height: 100%;
+	float: left;
+}
+
+.rentalItemListForm table tr td img {
+	width: 100%;
+	float: left;
+}
+
+.rentalItemListForm table tr td .rentalItemListTransactionStatus {
+	width: 100%;
+	height: 100%;
+	float: left;
+}
+
+.rentalItemListForm table tr td .rentalItemListTransactionStatus span {
+	width: 100%;
+	line-height: 66px;
+	float: left;
+	margin: 0;
+}
+
+.rentalItemListForm table tr td .rentalItemListTransactionStatus input[type=button]
+	{
+	width: 100%;
+	height: 62px;
+	line-height: 58px;
+	background:#2196F3;
+	color:#fff;
+	border:none;
+	float: left;
+}
+
+
+.rentalItemListDialog {
+	width: 700px;
+	height: 500px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #fff;
+	border: 1px solid #e8e8e8;
+	z-index: 1001;
+	opacity: 0;
+	display: none;
+}
+
+.rentalItemListDialog .rentalItemListDialogTitle {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	float: left;
+	background: #2196F3;
+	color:#fff;
+	position: relative;
+}
+
+.rentalItemListDialog .rentalItemListDialogTitle span:nth-child(1) {
+	padding-left: 10px;
+}
+
+.rentalItemListDialog .rentalItemListDialogTitle .rentalItemListClose {
+	padding: 7px;
+	color: #fff;
+	float: right;
+	cursor: pointer;
+}
+
+.rentalItemListDialog .rentalItemListDialogForm {
+	width: 600px;
+	height: 400px;
+	background: #eee;
+	float: left;
+	margin-top: 30px;
+	margin-left: 50px;
+	position: relative;
+}
+
+.rentalItemListDialog .rentalItemListDialogForm .rentalItemList {
+	width: 100%;
+	float: left;
+}
+
+.rentalItemListDialog .rentalItemListDialogForm select {
+	width: 30%;
+	float: left;
+	margin: 30px;
+}
+
+.rentalItemListDialog .rentalItemListDialogForm .rentalItemEvaluation {
+	width: 100%;
+	float: left;
+}
+
+.rentalItemListDialog .rentalItemListDialogForm .rentalItemEvaluation #rateYo
+	{
+	float: left;
+	padding-left: 30px;
+}
+
+.rentalItemListDialog .rentalItemListDialogForm .sellerEvaluation {
+	width: 100%;
+	float: left;
+	margin: 30px;
+}
+
+.rentalItemListDialog .rentalItemListDialogForm .sellerEvaluation span {
+	float: left;
+}
+
+.rentalItemListDialog .rentalItemListDialogForm .sellerEvaluation textarea
+	{
+	width: 80%;
+	height: 150px;
+	float: left;
+}
+
+.rentalItemListDialog .rentalItemListDialogForm .rentalItemListBtn {
+	width: 100%;
+	float: left;
+	text-align: center;
+}
+
+.rentalItemListDialog .rentalItemListDialogForm .rentalItemListBtn input{
+	width:150px;
+	height:40px;
+	border:none;
+	color:#fff;
+	background:#2196F3;
+	margin-right: 15px;
+}
+
+/* sendMessage */
+.sendMessageForm {
+	width: 100%;
+	float: left;
+	border: 1px solid #e8e8e8;
+	margin-left: 20px;
+	margin-top: 45px;
+	
+}
+
+
+
+.sendMessageTabForm {
+	width: 80%;
+	height: 80%;
+	float: left;
+	background: #eee;
+	margin: 97px;
+	margin-top: 30px;
+	padding-bottom: 58px;
+}
+.sendMessageForm  #writeNote .sendMessageTabForm .sender{
+	width: 100%;
+	float: left;
+	margin-top: 30px;
+	margin-left: 15px;
+}
+.sendMessageForm  #writeNote .sendMessageTabForm .receiver {
+	width: 100%;
+	float: left;
+	margin-top: 30px;
+	
+}
+
+.sendMessageForm  #writeNote .sendMessageTabForm .receiver span {
+	width: 100%;
+	float: left;
+}
+
+.sendMessageForm  #writeNote .sendMessageTabForm .recipient {
+	width: 100%;
+	float: left;
+	margin-top: 30px;
+	margin-left: 15px;
+}
+
+.sendMessageForm  #writeNote .sendMessageTabForm .recipient span {
+	width: 10%;
+	float: left;
+}
+
+.sendMessageForm  #writeNote .sendMessageTabForm .noteContent {
+	width: 100%;
+	float: left;
+	margin-top: 50px;
+}
+
+.sendMessageForm  #writeNote .sendMessageTabForm .noteContent span {
+	width: 100%;
+	float: left;
+	margin: 15px;
+	margin-top: 0;
+}
+
+.sendMessageForm  #writeNote .sendMessageTabForm .noteContent textarea {
+	width: 83%;
+	height: 180px;
+	float: left;
+	margin-left: 63px;
+}
+
+.sendMessageForm  #writeNote .sendMessageBtn {
+	width: 100%;
+	float: left;
+	padding-top: 30px;
+	padding-right: 60px;
+}
+
+.sendMessageForm  #writeNote .sendMessageBtn input {
+	float: right;
+}
+
+.sendMessageForm #inbox .inMessage {
+	width: 95%;
+	margin-top:30px;
+}
+.sendMessageForm #inbox .inSendMessageBtn {
+	width: 140px;
+	height: 40px;
+	float:right;
+	margin:18px;
+}
+
+.sendMessageForm #inbox .inSendMessageBtn input[type=button]
+	{
+	width: 100%;
+	height: 100%;
+	float: left;
+}
+
+.sendMessageForm #sent .outMessage {
+	width: 95%;
+	margin-top:30px;
+}
+
+.sendMessageForm #sent .outSendMessageBtn {
+	width: 140px;
+	height: 40px;
+	float:right;
+	margin:18px;
+}
+
+.sendMessageForm #sent .outSendMessageBtn input[type=button]
+	{
+	width: 100%;
+	height: 100%;
+	float: left;
+}
+
+/*goodsPayment*/
+.goodsPaymentForm {
+	width: 100%;
+	float: left;
+	margin-top:30px;
+}
+
+.goodsPaymentForm>table {
+	width: 100%;
+	float: left;
+	border:1px solid #e8e8e8;
+	
+}
+
+.goodsPaymentForm table tr {
+	width:100%;
+	float:left;
+}
+
+.goodsPaymentForm table tr:nth-child(1) {
+	height: 50px;
+	line-height: 50px;
+	background: #2196F3;
+	color:#fff;
+}
+
+.goodsPaymentForm table tr td {
+	width: 18%;
+	float:left;
+	text-align: center;
+}
+
+.goodsPaymentForm table tr td:nth-child(3) {
+	width: 10%;
+}
+
+.goodsPaymentForm table tr td input {
+	width: 100%;
+	flaot: left;
+}
+
+.userInformation {
+	width: 100%;
+	float: left;
+	border:1px solid #e8e8e8;
+	margin-top:30px;
+}
+
+.userInformation>span {
+	width: 100%;
+	height: 50px;
+	line-height:50px;
+	float: left;
+	background: #2196F3;
+	color:#fff;
+	padding-left: 15px;
+}
+
+.userInformation ul {
+	padding: 15px;
+}
+
+.userInformation ul li {
+	margin-top: 5px;
+}
+
+.userInformation ul li:nth-child(1) {
+	margin-top: 50px;
+}
+
+.shippingInformation {
+	width: 100%;
+	float: left;
+	margin-top:30px;
+	border:1px solid #e8e8e8;
+}
+
+.shippingInformation>span {
+	width: 100%;
+	height: 50px;
+	line-height:50px;
+	float: left;
+	background: #2196F3;
+	color:#fff;
+	padding-left: 15px;
+}
+
+.shippingInformation .latelyShippingForm ul {
+	padding: 15px;
+}
+
+.shippingInformation .latelyShippingForm ul li {
+	margin-top: 5px;
+}
+
+.shippingInformation .latelyShippingForm ul li:nth-child(1) {
+	margin-top: 15px;
+}
+
+.shippingInformation .newShippingForm span {
+	width: 6%;
+	float: left;
+}
+
+.shippingInformation .newShippingForm ul {
+	padding: 15px;
+}
+
+.shippingInformation .newShippingForm ul li {
+	margin-top: 5px;
+}
+
+.shippingInformation .newShippingForm ul li:nth-child(1) {
+	margin-top: 15px;
+}
+
+.shippingInformation .newShippingForm ul li:nth-child(4) select {
+	float: left;
+	margin-right: 5px;
+}
+
+.shippingInformation .newShippingForm ul li input{
+	border:noen;
+	border:1px solid #e8e8e8;	
+	transition:0.4s;
+}
+
+.shippingInformation .newShippingForm ul li i{
+	background: #2196f3;
+	color:#fff;
+	border:none;
+	padding:4px; 
+	border-top-right-radius:5px;
+	border-bottom-right-radius:5px;
+}
+
+.shippingInformation .newShippingForm ul li:nth-child(4) input {
+	width: 6%;
+	float: left;
+	margin-right: 5px;	
+}
+
+.shippingInformation .newShippingForm ul li input:focus{
+	border-color:#2196f3
+}
+
+
+.paymentMoney {
+	width: 100%;
+	float: left;
+	margin-top:30px; 
+	border:1px solid #e8e8e8;
+}
+
+.paymentMoney>span {
+	width: 100%;
+	height: 50px;
+	line-height:50px;
+	float: left;
+	background: #2196F3;
+	color:#fff;
+	padding-left: 15px;	
+}
+
+.paymentMoney ul {
+	padding: 15px;
+}
+
+.paymentMoney ul li {
+	margin-top: 5px;
+}
+
+.paymentMoney ul li:nth-child(1) {
+	margin-top: 50px;
+}
+
+.goodsPaymentBtn {
+	width: 100%;
+	float: left;
+	text-align: center;
+	margin-top:30px;
+	margin-bottom: 30px;
+}
+
+.goodsPaymentBtn input[type=button]{
+	width: 150px;
+	height:40px;
+	border:none;
+	background: #2196f3;
+	color:#fff;
+}
+
+/* shoppingBasket */
+.shoppingBasketForm {
+	width: 100%;
+	float: left;
+	margin-top:30px;
+}
+
+
+.shoppingBasketForm .shoppingBasketTitle>span {
+	font-size:60px;
+	font-weight:bold;
+	color:#fff;
+	position: absolute;
+	top:50%;
+	left:50%; 
+	transform:translate(-50%,-50%);
+	
+	
+}
+
+.shoppingBasketForm .shoppingBasketTitle{width:100%; height:300px; float:left; background-image:url("/controller/resources/image/myPageTitleImg.jpeg");  background-position:top center ;position: relative;}
+.shoppingBasketForm .shoppingBasketTitle::before{content:""; width:100%; height: 100%; float:left; background: #000; opacity:0.7; position: absolute; top:0; left:0; }
+
+
+
+
+.shoppingBasketForm table {
+	width: 100%;
+	float: left;
+}
+
+.shoppingBasketForm table tr:nth-child(1){
+	border-top: 2px solid #e8e8e8;
+	border-bottom: 2px solid #e8e8e8;
+}
+	
+.shoppingBasketForm table tr:nth-child(1) td {
+	height: 80px;
+	line-height: 80px;
+}
+
+.shoppingBasketForm table tr td {
+	width: 15%;
+	float: left;
+	text-align: center;
+	height: 167px;
+	line-height: 167px;
+}
+.shoppingBasketForm table tr td:nth-child(2){width:20%;}
+.shoppingBasketForm table tr td:nth-child(4){width:30%;}
+
+.shoppingBasketForm table tr td img {
+	width: 100%;
+	height:100%;
+	float: left;
+}
+
+.shoppingBasketTotalAmountForm {
+	width: 100%;
+	float: left
+}
+
+.shoppingBasketTotalAmountForm .shoppingBasketTotalAmount {
+	width: 100%;
+	height: 150PX;
+	float: left;
+	margin-right: 30px;
+	border-top: 2px solid #e8e8e8;
+}
+
+.shoppingBasketTotalAmountForm .shoppingBasketTotalAmount>span {
+	float: right;
+	padding-top: 24px;
+}
+
+.shoppingBasketTotalAmountForm .shoppingBasketTotalAmountBtn {
+	width: 100%;
+	float: left;
+}
+
+.shoppingBasketTotalAmountForm .shoppingBasketTotalAmountBtn input {
+	width: 130px;
+	height: 40px;
+	float: right;
+	margin-right: 30px;
+	border:none;
+	background:#2196F3;
+	color:#fff;
+}
+
+/* userManagement */
+#userManagement {
+	float: left;
+	margin-left: 20px;
+	margin-top: 45px;
+}
+
+
+.userManagementBtn {
+	float: right;
+	margin-top: 15px;
+}
+
+.userManagementBtn input {
+	width: 110px;
+	height: 40px;
+}
+
+.reasonForFiling{
+	width:80%;
+	float:left;
+	position: absolute;
+	top:50%;
+	left:60%;
+	transform: translate(-50%, -50%);
+	opacity:0;
+	display:none;
+	z-index: 1001;
+}
+.reasonForFiling .reasonForFilingTitle{width:100%; height:50px; background:#2196F3; float:left; color:#fff; position: relative;}
+.reasonForFiling .reasonForFilingTitle span:nth-child(2){position: absolute; top:50%; left:50%; transform: translate(-50%, -50%);}
+.reasonForFiling .reasonForFilingTitle .reasonForFilingClose{
+	padding:5px;
+	float:right;
+	cursor: pointer;
+}
+
+
+
+
+/* bootstrap pan icon */
+.glyphicon-pencil:before {
+	margin-right: 5px;
+}
+
+@media ( min-width :0) and (max-width:992px) {
+	/* headre */
+	.headerNavaction .headerIcon {
+	margin-left:-18px;
+	}
+	
+	/* goodsList */
+	.col-xs-10 {
+		width: 100%;
+	}
+	.goodsAdd {
+		top: 58px;
+	}
+	.goodsListDetailSearch {
+		display: none
+	}
+	.goodsListCategory {
+		display: none;
+	}
+
+	/* goodsListMobile */
+	.mobileGoodsListForm {
+		display: block;
+	}
+}
+
+@media ( min-width :0) and (max-width:768px) {
+	/* bootstrap */
+	.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9{padding-left:15px;}
+	
+	/* layout */
+	#mypageContentTiles {
+		width: 100%;
+	}
+	.wishListForm {
+		margin-left: 0;
+	}
+	.saleItemListForm{
+		margin-left: 0;
+	}
+	.rentalItemListForm{
+		margin-left:0;
+	}
+	#userManagement{
+		margin-left:0;
+	}
+	
+	.sendMessageTabForm{width:100%; margin:0; padding:0;}
+	
+	.mobileMypageMenu ul li:nth-last-child(1){display:none}
+	
+	/* header */
+	.headerNavaction {
+		display: none;
+	}
+	.headerNavactionUser {
+		display: none;
+	}
+
+	/* mobile header*/
+	.mobileHeaderNavaction {
+		display: block;
+	}
+
+	/* index*/
+	#indexRentalForm {
+		margin-top: 20px;
+	}
+
+	/*goodsList*/
+	#goodsListItemForm .goodsListItem {
+		width: 46%;
+	}
+
+	/* mobileGoodsList */
+	.mobileGoodsListForm .mobileGoodsListCategory ul {
+		width: 87%;
+	}
+
+	/* mypage */
+	.mypageMenu {
+		display: none;
+	}
+	.mobileMypageMenu {
+		display: block;
+	}
+
+	/* wishList */
+	.wishListForm table tr td {
+		height: 200px;
+	}
+	.wishListForm table tr td:nth-child(1) {
+		width: 50%
+	}
+	.wishListForm table tr td:nth-child(2) {
+		width: 50%
+	}
+	.wishListForm table tr td h3 {
+		font-size: 20px;
+		line-height: 150px;
+		font-weight: bold;
+	}
+	.sendMessageForm{
+		margin-left:0;
+	}
+}
+
+@media ( min-width :0) and (max-width:580px) {
+	#goodsListItemForm .goodsListItem:nth-child(even) {
+		margin-right: 0;
+	}
+
+	/* wishList */
+	.wishListForm table tr td h3 {
+		font-size: 7px
+	}
+}
+
+@media ( min-width :0) and (max-width:450px) {
+	/* goodsList */
+	#goodsListItemForm .goodsListItem {
+		margin-right: 0;
+	}
+
+	/* login */
+	#login {
+		display: none;
+	}
+	#mobileLogin {
+		display: block;
+	}
+	
+	.sendMessageForm  #writeNote .sendMessageTabForm .recipient span{width:14%}
+	.sendMessageForm  #writeNote .sendMessageTabForm .noteContent textarea{width:92%; margin-left:15px;}
+	.sendMessageForm  #writeNote .sendMessageBtn input{margin-bottom:25px;}
+}
+
+#instructionsResume img {
+    width: 100%;
+}

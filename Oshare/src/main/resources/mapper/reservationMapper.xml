@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reservationMapper">
+	<resultMap type="reservationDTO" id="reservation">
+		<id column="reserv_no" property="reservationNo"/>
+		<result column="board_no" property="boardNo"/>
+		<result column="reserv_start" property="startDate"/>
+		<result column="reserv_end" property="endDate"/>
+		<result column="reg_date" property="regDate"/>
+	</resultMap>
+	
+	<resultMap type="sharingDTO" id="demandPaymentMap">
+		<id column="sharing_no" property="sharingNo"/>
+		<result column="sharing_start" property="sharingStart"/>
+		<result column="sharing_end" property="sharingEnd"/>
+		<result column="sharingDays" property="sharingDays"/>
+		<result column="total_price" property="totalPrice"/>
+		<result column="overDue" property="overDue"/>
+		<result column="overDueFee" property="overDueFee"/>
+		<result column="totalOverDueFee" property="totalOverDueFee"/>
+		<association javaType="boardDTO" property="board">
+			<result column="product_price_per_day" property="price"/>
+		</association>
+	</resultMap>
+	
+	<!-- 글번호에 해당하는 예약 조회 -->
+	<select id="selectReservationByBoardNo" resultMap="reservation" parameterType="int">
+		SELECT reserv_no, board_no, reserv_start, reserv_end, reg_date 
+		FROM RESERVATION where board_no=#{value}
+	</select>
+	
+	<insert id="insertReservation" parameterType="reservationDTO">
+		insert into RESERVATION 
+		values (SEQ_RESERV_NO.NEXTVAL, #{boardNo}, to_date(#{startDate},'yyyymmddhh24miss'), to_date(#{endDate},'yyyymmddhh24miss'), sysdate)
+	</insert>
+	
+	<!-- sharing 삽입 -->
+	<insert id="insertSharing" parameterType="sharingDTO">
+		insert into sharing 
+		values(SEQ_SHARING_NO.nextval, #{boardNo}, #{sellerId}, #{buyerId}, to_date(#{sharingStart},'yyyymmddhh24miss'), to_date(#{sharingEnd},'yyyymmddhh24miss'), '대여대기', #{totalPrice}, #{productCount})
+	</insert>
+	
+	<!-- sharing 삭제 -->
+	<delete id="deleteSharing" parameterType="int">
+		delete from sharing where sharing_no=#{value}
+	</delete>
+	
+	<!-- reservation 삭제 -->
+	<delete id="deleteReservation" parameterType="int">
+		delete from reservation where reserv_no=#{value}
+	</delete>
+	
+	<!-- 반납신청 -->
+	<update id="applyReturn" parameterType="map">
+      update sharing set transaction_state=#{returnState}, sharing_end=sysdate where sharing_no=#{sharingNo}
+   </update>
+		
+	<!-- 반납확인 -->
+	<update id="responseReturn" parameterType="map">
+		update sharing
+		<set>
+			<if test='responseState eq "확인".toString()'>
+				transaction_state='거래완료'
+			</if>
+		</set>
+		where sharing_no=#{sharingNo}
+	</update>	
+	
+	<!-- 비용청구에 띄워 -->
+	<select id="selectDemandPayment" parameterType="int" resultMap="demandPaymentMap">
+		select s.sharing_no, s.sharing_start, s.sharing_end, CEIL(s.sharing_end-s.sharing_start) as sharingDays, s.total_price,trunc(r.reserv_end-s.sharing_end) as "overDue", trunc(b.product_price_per_day*1.5) as "overDueFee", trunc(b.product_price_per_day*1.5*CEIL(s.sharing_end-s.sharing_start)) as "totalOverDueFee", b.product_price_per_day 
+		from (sharing s join reservation r on s.sharing_no=r.reserv_no and s.sharing_no=#{value}) join (sharing s2 join board b on b.board_no=s2.board_no and s2.sharing_no=#{value}) on s2.sharing_no=s.sharing_no
+	</select>  
+	
+		<!-- 거래 상태 변경 -->
+	<update id="updateTransactionState" parameterType="map">
+      update sharing set transaction_state=#{state} where sharing_no=#{sharingNo}
+   </update>
+	
+</mapper>

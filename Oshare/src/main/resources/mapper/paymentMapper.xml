@@ -1,0 +1,45 @@
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="paymentMapper">
+
+	<resultMap type="sharingDTO" id="extraChargeMap">
+		<id column="sharing_no" property="sharingNo"/>
+		<result column="sharing_start" property="sharingStart"/>
+		<result column="sharing_end" property="sharingEnd"/>
+		<result column="sharingDays" property="sharingDays"/>
+		<result column="total_price" property="totalPrice"/>
+		<result column="overDue" property="overDue"/>
+		<result column="overDueFee" property="overDueFee"/>
+		<result column="totalOverDueFee" property="totalOverDueFee"/>
+		<association javaType="boardDTO" property="board">
+			<result column="product_price_per_day" property="price"/>
+		</association>
+		<association javaType="memberDTO" property="member">
+			<result column="member_id" property="memberId"/>
+			<result column="member_phone" property="memberPhone"/>
+			<result column="member_addr" property="memberAddr"/>
+		</association>
+		<association javaType="extraChargeDTO" property="extraCharge">
+			<result column="charge" property="charge"/>
+			<result column="charge_reason" property="chargeReason"/>
+		</association>
+	</resultMap>
+	
+	<!-- 추가금 정보 삽입 -->
+	<insert id="insertExtraCharge" parameterType="extraChargeDTO">
+		insert into extracharge values (#{chargeNo}, #{charge}, #{chargeReason}, sysdate)
+	</insert>
+
+	<!-- 추가금 정보 조회-->	
+		<select id="selectExtraChargeInfo" parameterType="int" resultMap="extraChargeMap">
+		select s.sharing_no, b.product_price_per_day, b.product_Name, s.sharing_start, s.sharing_end, CEIL(s.sharing_end-s.sharing_start) as sharingDays, s.total_price, 
+		trunc(s.sharing_end-r.reserv_end) as "overdue", trunc(b.product_price_per_day*1.5*(s.sharing_end-s.sharing_start)) as "overdueFee",
+		ex.charge, ex.charge_reason, 
+		m.member_id, m.member_phone, m.member_addr
+		from ((sharing s join reservation r on s.sharing_no=r.reserv_no and s.sharing_no=#{value}) join (sharing s4 join member m on s4.buyer_id=m.member_no and s4.sharing_no=#{value}) on s4.sharing_no=s.sharing_no) join ((sharing s2 join board b on b.board_no=s2.board_no and s2.sharing_no=#{value}) join (sharing s3 join extracharge ex on s3.sharing_no=ex.charge_no) on s2.sharing_no=s3.sharing_no)
+		on s2.sharing_no=s.sharing_no
+	</select>
+</mapper>

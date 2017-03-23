@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myPageMapper">
+	
+	<resultMap type="BoardDTO" id="salesDTO">
+		<id column="board_no" property="boardNo"/>
+		<result column="product_name" property="productName"/>	
+		<result column="thumbnail" property="filePath"/>
+		<collection property="sharing" ofType="sharingDTO">
+			<id column="sharing_no" property="sharingNo"/>
+			<result column="seller_id" property="sellerId"/>
+			<result column="buyer_id" property="buyerId"/>
+			<result column="sharing_start" property="sharingStart"/>
+			<result column="sharing_end" property="sharingEnd"/>
+			<result column="transaction_state" property="transactionState"/>
+			<association property="member" javaType="memberDTO">
+				<result column="member_phone" property="memberPhone"/>
+			</association>
+		</collection>	
+	</resultMap>
+	
+	<resultMap type="memberDTO" id="memberMap">
+		<id column="member_id" property="memberId"/>
+		<result column="member_no" property="memberNo"/>
+		<result column="member_pwd" property="memberPwd"/>
+		<result column="member_name" property="memberName"/>
+		<result column="member_birth" property="memberBirth"/>
+		<result column="member_addr" property="memberAddr"/>
+		<result column="member_bank" property="memberBank"/>
+		<result column="member_account" property="memberAccount"/>
+		<result column="member_valid_month" property="memberValidMonth"/>
+		<result column="member_valid_year" property="memberValidYear"/>
+		<result column="member_sharing_count" property="memberSharingCount"/>
+		<result column="member_phone" property="memberPhone"/>
+		<result column="member_grade" property="memberGrade"/>
+	</resultMap>
+	
+	<!-- 위시리스트 -->
+	<resultMap type="wishlistDTO" id="wishMap">
+		<id column="wishlist_no" property="wishlistNo"/>
+		<result column="board_no" property="boardNo"/>
+		<association property="board" javaType="boardDTO">
+			<result column="product_name" property="productName"/>
+			<result column="thumbnail" property="filePath"/>
+		</association>
+	</resultMap>
+	
+	<resultMap type="DeclarationDTO" id="declarationMap">
+		<id property="declarationNo" column="DECLARATION_NO"/>
+		<result property="declarationSubject" column="DECLARATION_SUBJECT"/>
+		<result property="declarationReporter" column="DECLARATION_REPORTER"/>
+		<result property="declarationType" column="DECLARATION_TYPE"/>
+		<result property="declarationReason" column="DECLARATION_REASON"/>
+	</resultMap>
+	
+	
+	<!-- 판매 물품 조회 -->
+	<select id="salesItemList" parameterType="string" resultMap="salesDTO">
+		select DISTINCT b.board_no, b.product_name, b.thumbnail , s.sharing_no, s.seller_id, s.buyer_id, m.member_phone, s.sharing_start, s.sharing_end, s.transaction_state 
+		from (sharing s join board b on s.seller_id=#{value} and s.board_no=b.board_no) 
+		join (sharing s2 join member m on s2.buyer_id=m.member_id)
+		on s.buyer_id=s2.buyer_id
+		order by board_no
+	</select>
+	
+		<!-- 대여 물품 조회 -->
+	<select id="rentalItemList" parameterType="string" resultMap="salesDTO">
+		select DISTINCT b.board_no, b.product_name, b.thumbnail , s.sharing_no, s.seller_id, s.buyer_id, m.member_phone, s.sharing_start, s.sharing_end, s.transaction_state 
+		from (sharing s join board b on s.buyer_id=#{value} and s.board_no=b.board_no) 
+		join (sharing s2 join member m on s2.seller_id=m.member_id)
+		on s.buyer_id=s2.buyer_id
+		order by board_no
+	</select>
+	
+	
+	
+	<!-- 오늘 날짜보다 sharing_start가 작고, 현재 상태가 대여 대기라면 sharing_state 대여중으로 변경 -->
+	<update id="updateSharingState">
+		update sharing set transaction_state='대여중' where sharing_start <![CDATA[ < ]]> sysdate and transaction_state='대여대기'
+	</update>
+	
+		<!-- 별점 및 평가 삽입 -->
+	<insert id="insertMemberGrade" parameterType="gradeDTO">
+		insert into member_grade values (SEQ_MEMBER_GRADE_NO.nextval, #{memberId}, #{sellerId}, #{memberReview}, sysdate, #{memberPoint}, #{boardNo})
+	</insert>
+	
+	<!-- cart select , delete -->
+	<resultMap type="CartDTO" id="cartMapp">
+		<id column="CART_NO" property="cartNo"/>
+		<result column="BOARD_NO" property="boardNo"/>
+		<result column="MEMBER_ID" property="memberId"/>
+		<result column="CART_START" property="cartStart"/>
+		<result column="CART_END" property="cartEnd"/>
+		<result column="CART_PRICE" property="cartPrice"/>
+		<result column="CART_PRODUCT_NAME" property="productName"/>
+	</resultMap>
+	
+	<select id="cartSelect" resultMap="cartMapp" parameterType="String">
+		select c.cart_no, c.BOARD_NO, b.PRODUCT_NAME as productName,b.THUMBNAIL as filePath ,  c.CART_NO, c.MEMBER_ID, c.CART_START, c.CART_END, c.CART_PRICE
+		from cart c full join board b on c.board_no = b.board_no
+   		where c.member_id = #{memberId}
+	</select>
+	
+	<delete id="cartDelete" parameterType="int">
+		delete from cart where board_No=#{boardNo}
+	</delete>
+	
+	<!-- 회원관리 전체회원 Select -->
+	<select id="adminAllUserSelect" resultMap="memberMap">
+		select member_no , member_id,member_pwd,member_name,member_birth,member_addr,member_bank,member_account,
+		member_valid_month,member_valid_year,member_sharing_count,member_phone, member_grade from member
+	</select>
+	
+	<!-- 회원관리 신고 정지회원 Select -->
+	<select id="adminUserBlacklistSelect" resultMap="memberMap" parameterType="int">
+		select member_no , member_id,member_pwd,member_name,member_birth,member_addr,member_bank,member_account,
+		member_valid_month,member_valid_year,member_sharing_count,member_phone, member_grade from member where member_grade = #{value} 
+	</select>
+	
+	<!--회원관리 회원 계정 등급 변경 Update -->
+	<update id="adminUserGradeChage" parameterType="map">
+		update member set member_grade = #{memberGrade} where member_no = #{memberNo}
+	</update>
+	
+	<!-- 위시리스트 추가 -->
+	<insert id="insertWishList" parameterType="wishlistDTO">
+		insert into wishlist(wishlist_no, board_no, member_id) values (SEQ_WISHLIST_NO.nextval, #{boardNo}, #{memberId}) 
+	</insert>
+	
+	<!-- 위시리스트 삭제 -->
+	<delete id="deleteWishList" parameterType="wishlistDTO">
+		delete from wishlist where board_no=#{boardNo} and member_id=#{memberId}
+	</delete>
+	
+	<!-- 위시리스트 조회 -->
+	<select id="selectWIshList" parameterType="string" resultMap="wishMap">
+		select w.wishlist_no, w.board_no, b.product_name, b.thumbnail from wishlist w join board b on w.board_no=b.board_no and w.member_id=#{value}
+	</select>
+	
+	<!-- 신고 Insert -->
+	<insert id="declarationInsert" parameterType="declarationDTO">
+		insert into DECLARATION values(SEQ_DECLARATION_NO.NEXTVAL,#{declarationSubject},#{declarationReporter},#{declarationType},#{declarationReason})
+	</insert>
+	
+	<!-- 신고하기 회원 계정 등급 변경 UPDATE -->
+	<update id="declarationUserGradeChage" parameterType="map">
+		update member set member_grade = #{memberGrade} where member_id = #{memberId}
+	</update>
+	
+	<!-- 신고/정지 사유 Select  -->
+	<select id="reasonForFiling" resultMap="declarationMap" parameterType="String">
+		SELECT DECLARATION_NO ,  DECLARATION_SUBJECT , DECLARATION_REPORTER , DECLARATION_TYPE ,  DECLARATION_REASON FROM DECLARATION WHERE DECLARATION_REPORTER = #{value}   
+	</select>
+</mapper>

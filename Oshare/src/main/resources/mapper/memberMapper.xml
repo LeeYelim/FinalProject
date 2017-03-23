@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memberMapper">
+
+	<resultMap type="memberDTO" id="memberMap">
+		<id column="member_id" property="memberId" />
+		<result column="member_no" property="memberNo" />
+		<result column="member_pwd" property="memberPwd" />
+		<result column="member_name" property="memberName" />
+		<result column="member_birth" property="memberBirth" />
+		<result column="member_addr" property="memberAddr" />
+		<result column="member_bank" property="memberBank" />
+		<result column="member_account" property="memberAccount" />
+		<result column="member_valid_month" property="memberValidMonth" />
+		<result column="member_valid_year" property="memberValidYear" />
+		<result column="member_sharing_count" property="memberSharingCount" />
+		<result column="member_phone" property="memberPhone" />
+		<result column="member_profile_path" property="memberProfilePath" />
+		<result column="member_grade" property="memberGrade" />
+	</resultMap>
+
+	<!-- SharingMap -->
+	<resultMap type="sharingDTO" id="sharingMap">
+		<id column="SHARING_NO" property="sharingNo" />
+		<result column="BOARD_NO" property="boardNo" />
+		<result column="SELLER_ID" property="sellerId" />
+		<result column="BUYER_ID" property="buyerId" />
+		<result column="SHARING_START" property="sharingStart" />
+		<result column="SHARING_END" property="sharingEnd" />
+		<result column="TRANSACTION_STATE" property="transactionState" />
+		<result column="TOTAL_PRICE" property="totalPrice" />
+		<result column="PRODUCT_COUNT" property="productCount" />
+	</resultMap>
+
+	<!-- 회원가입 -->
+	<insert id="joinMember" parameterType="memberDTO">
+		insert into Member
+		values(
+		seq_member_no.nextval,
+		#{memberId},
+		#{memberPwd},
+		#{memberName},
+		#{memberBirth},
+		#{memberAddr},
+		#{memberBank},
+		#{memberAccount},
+		#{memberValidMonth},
+		#{memberValidYear},
+		#{memberSharingCount},
+		#{memberPhone},
+		0,
+		null
+		)
+	</insert>
+
+	<!-- id중복확인 -->
+	<select id="idCheck" parameterType="string" resultMap="memberMap">
+		select
+		member_id,member_pwd,member_name,member_birth,member_addr,member_bank,member_account,
+		member_valid_month,member_valid_year,member_sharing_count,member_phone
+		from member where member_id=#{value}
+	</select>
+
+	<!-- 로그인 -->
+	<select id="loginCheck" parameterType="memberDTO" resultType="memberDTO">
+		select member_id as memberId ,member_name as memberName , member_grade
+		as memberGrade from member
+		where member_id=#{memberId} and
+		member_pwd=#{memberPwd}
+	</select>
+
+	<!-- ID에 해당하는 회원정보검색 -->
+	<select id="selectByMemberId" parameterType="string" resultType="memberDTO">
+		select
+		member_id as memberId, member_name as memberName, member_birth as memberBirth,
+		member_addr as memberAddr,
+		member_account as memberAccount, member_valid_year as memberValidYear, member_phone
+		as memberPhone
+		from member
+		where member_id=#{memberId}
+	</select>
+
+
+
+	<!-- 회원정보 수정 -->
+	<update id="updateMember" parameterType="memberDTO">
+		update member
+		set
+		member_pwd=#{memberPwd1}, member_name=#{memberName}, member_addr=#{memberAddr},
+		member_bank=#{memberBank}, member_account=#{memberAccount},
+		member_valid_month=#{memberValidMonth},
+		member_valid_year=#{memberValidYear},
+		member_phone=#{memberPhone}, member_profile_path=#{memberProfilePath}
+		where member_id=#{memberId}
+	</update>
+
+	<!-- 거래상태 확인 -->
+	<select id="sharingState" parameterType="map" resultMap="sharingMap">
+		select
+		SHARING_NO as sharingNo, BOARD_NO as boardNo, SELLER_ID as sellerId, BUYER_ID as
+		buyerId,
+		SHARING_START as sharingStart, SHARING_END as shringEnd, TRANSACTION_STATE as
+		transactionState,
+		TOTAL_PRICE as totalPrice, PRODUCT_COUNT as productCount
+		from SHARING
+		where
+	    NOT TRANSACTION_STATE = '거래완료' AND SELLER_ID = #{memberId} OR NOT TRANSACTION_STATE = '거래완료' AND BUYER_ID = #{memberId}
+	</select>
+
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteMember" parameterType="string">
+		delete from member where
+		member_id = #{value}
+	</delete>
+
+	<!-- 수신자 유효성 검사 -->
+	<select id="receiverValidation" resultMap="memberMap"
+		parameterType="String">
+		select member_id from member where member_id = #{value}
+	</select>
+	
+	<!-- 회원탈퇴 탈퇴된 계정 게시물 삭제 -->
+	<delete id="deleteMemberBoard" parameterType="String">
+	  delete from board where member_id =#{value}
+	</delete>
+	<!-- 회원탈퇴 탈퇴된 계정 평점 삭제 -->
+	<delete id="deleteMemberGrade" parameterType="String">
+	  delete from member_grade seller_id = #{value}
+	</delete>
+
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sendMessageMapper">
+	<resultMap type="messageDTO" id="messageMap">
+		<id column="MESSAGE_NO" property="messageNo" />
+		<result column="SENDER" property="sender" />
+		<result column="RECEIVER" property="receiver" />
+		<result column="MESSAGE_CONTENT" property="content" />
+		<result column="SENDING_DATE" property="sendingDate" />
+	</resultMap>
+
+		<!-- 쪽지보내기 -->
+	<insert id="sendMessageInsert" parameterType="messageDTO">
+		insert into message
+		values(SEQ_MESSAGE_NO.nextval,#{sender},#{receiver},#{content},sysdate)
+	</insert>
+	
+	<!-- 받은쪽지함 -->
+	<select id="senedMessageReceiverSelect" resultMap="messageMap"
+		parameterType="String">
+		select message_no , sender , receiver , message_content , sending_date from message where RECEIVER =#{value}
+	</select>
+	
+	<!-- 보낸쪽지함 -->
+    <select id="senedMessageSenderSelect" resultMap="messageMap"
+		parameterType="String">
+		select message_no , sender , receiver , message_content , sending_date from message where sender =#{value}
+	</select> 
+	
+	<!-- 쪽지삭제 -->
+	<delete id="sendMessageDelete" parameterType="String">
+		delete from message where message_no = #{value}
+	</delete>
+
+</mapper>
