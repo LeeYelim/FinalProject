@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" 
+    >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        >
+          <ImageView
+            android:id="@+id/imageLhand"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:src="@drawable/lefthand"
+            android:scaleType="fitXY" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageMusic"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        android:src="@drawable/music2" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/imageRhand"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:src="@drawable/righthand"
+            android:scaleType="fitXY" />
+
+        <ImageView
+            android:id="@+id/imagefinger2"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="7dp"
+            android:src="@drawable/circle"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/imagefinger3"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/circle"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/imagefinger4"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginTop="9dp"
+            android:src="@drawable/circle"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/imagefinger5"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/circle"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/imagefinger1"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="33dp"
+            android:src="@drawable/circle"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">피아노 교습소</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_choose_song">ChooseSongActivity</string>
+    <string name="title_activity_all_songs">AllSongsActivity</string>
+    <string name="title_activity_sheet_music">SheetMusicActivity</string>
+    
+
+</resources>
